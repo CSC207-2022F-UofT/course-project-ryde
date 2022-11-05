@@ -70,8 +70,7 @@ public class FileUser implements UserRegisterDsGateway {
             writer.newLine();
 
             for (UserRegisterDsRequestModel user : accounts.values()) {
-                String line = "%s,%s,%s,%s,%s,%s".formatted(
-                        user.getEmail(), user.getPassword(), user.getName(), user.getCreationTime(), user.getListings(), user.getLocation());
+                String line = String.format("%s,%s,%s,%s,%s,%s", user.getEmail(), user.getPassword(), user.getName(), user.getCreationTime(), user.getListings(), user.getLocation());
                 writer.write(line);
                 writer.newLine();
             }

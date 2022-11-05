@@ -16,7 +16,7 @@ public class UserRegisterRequestModel {
         this.name = name;
     }
 
-    public UserRegisterRequestModel(String email, String password, String name, String repeatPassword, String location) {
+    public UserRegisterRequestModel(String email, String password, String repeatPassword, String name, String location) {
         this.email = email;
         this.password = password;
         this.repeatPassword = password;
