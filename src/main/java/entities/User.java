@@ -8,7 +8,9 @@ public abstract class User {
     private final String email;
     private final String password;
     private final String name;
-    private final List<Listing> listings = new ArrayList<>();
+
+//    Store ids of listings created by user
+    private final List<Integer> listings = new ArrayList<>();
 
     public User(String email, String password, String name) {
         this.email = email;
@@ -27,7 +29,7 @@ public abstract class User {
         return password;
     }
 
-    public List<Listing> getListings() {
+    public List<Integer> getListings() {
         return listings;
     }
 
@@ -42,7 +44,7 @@ public abstract class User {
         return matcher.matches();
     }
 
-    public void addListing(Listing listing) {
+    public void addListing(Integer listing) {
         listings.add(listing);
     }
 }
