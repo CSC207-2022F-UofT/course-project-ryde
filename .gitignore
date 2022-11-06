@@ -119,3 +119,4 @@ replay_pid*
 /gradlew.bat
 /.idea/
 /gradle/
+/users.csv
