@@ -5,6 +5,9 @@ import entities.UserFactory;
 import java.time.LocalDateTime;
 import entities.User;
 
+/**
+ * This is UserRegisterUseCase
+ */
 public class UserRegisterInteractor implements UserRegisterInputBoundary{
     final UserRegisterDsGateway userDsGateway;
     final UserRegisterPresenter userPresenter;
@@ -16,6 +19,10 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary{
         this.userFactory = userFactory;
     }
 
+    /**
+     * @param requestModel contains details about the user wishing to be created
+     * @return success view if the user was created successfully and failure view if the user was not created
+     */
     @Override
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) {
         if (userDsGateway.existsByEmail(requestModel.getEmail())) {
