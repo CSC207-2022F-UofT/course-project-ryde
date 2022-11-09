@@ -1,4 +1,6 @@
 package screens.userRegisterScreen;
+import useCases.userRegister.UserRegisterResponseModel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -63,15 +65,19 @@ public class RegisterScreen extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
 
+        if (evt.getActionCommand().equals("Cancel")) {
+            return;
+        }
+
         if (rb2.isSelected()) {
             location = JOptionPane.showInputDialog(this,"Enter your postal code:");
             try {
-                userRegisterController.create(email.getText(),
+                UserRegisterResponseModel response = userRegisterController.create(email.getText(),
                         String.valueOf(password.getPassword()),
                         String.valueOf(repeatPassword.getPassword()),
                         String.valueOf(name.getText()),
                         location);
-                String output = String.format("%s Dealership created.", name.getText());
+                String output = String.format("%s Dealership created.", response.getLogin());
                 JOptionPane.showMessageDialog(this, output);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
