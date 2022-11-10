@@ -1,5 +1,3 @@
-import screens.WelcomeScreen;
-
 import entities.*;
 import screens.userRegisterScreen.FileUser;
 import screens.userRegisterScreen.RegisterScreen;
@@ -22,7 +20,7 @@ public class Main {
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
 
-        // Create the parts to plug into the Use Case+Entities engine
+//         Create the parts to plug into the Use Case+Entities engine
         UserRegisterDsGateway user;
         try {
             user = new FileUser("./users.csv");
@@ -37,20 +35,11 @@ public class Main {
                 interactor
         );
 
-        // Build the GUI, plugging in the parts
+//         Build the GUI, plugging in the parts
         RegisterScreen registerScreen = new RegisterScreen(userRegisterController);
         screens.add(registerScreen, "welcome");
         cardLayout.show(screens, "register");
         application.pack();
         application.setVisible(true);
-
-        // Unused screens; we'll uncomment this later
-//        WelcomeScreen welcomeScreen = new WelcomeScreen();
-//        LoginScreen loginScreen = new LoginScreen();
-//        LoggedInScreen loggedInScreen = new LoggedInScreen();
-//        screens.add(welcomeScreen, "register");
-//        screens.add(loginScreen, "login");
-//        screens.add(loggedInScreen, "loggedIn");
-
     }
 }
