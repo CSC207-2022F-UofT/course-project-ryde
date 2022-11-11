@@ -1,6 +1,5 @@
 package intefaceAdapters.userLogin;
 
-import entities.LoggedInUserSingleton;
 import useCases.userLogin.UserLoginPresenter;
 import useCases.userLogin.UserLoginResponseModel;
 
