@@ -21,7 +21,7 @@ public class WelcomeScreen extends JFrame implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    private RegisterScreen registerScreen;
+    private final RegisterScreen registerScreen;
     public WelcomeScreen(RegisterScreen registerScreen) {
         this.registerScreen = registerScreen;
 
@@ -48,6 +48,7 @@ public class WelcomeScreen extends JFrame implements ActionListener {
     }
 
     /**
+     * @param evt the event to be processed
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
@@ -59,12 +60,12 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         }
     }
 
-    public void setLoginScreen() {
+    private void setLoginScreen() {
         UserLoginScreen loginUserScreen = new UserLoginScreen();
         this.setContentPane(loginUserScreen);
         this.pack();
     }
-    public void setRegisterScreen(RegisterScreen registerScreen) {
+    private void setRegisterScreen(RegisterScreen registerScreen) {
         this.setContentPane(registerScreen);
         this.pack();
     }

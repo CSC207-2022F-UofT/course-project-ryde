@@ -1,5 +1,8 @@
 package entities;
-
+/**
+ * Represents a user that has been logged in. Only one user can ever be logged in, hence it follows the
+ * singleton design pattern
+ */
 public class LoggedInUserSingleton {
     private static LoggedInUserSingleton loggedInUser;
     private final String email;

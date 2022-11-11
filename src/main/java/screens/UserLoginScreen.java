@@ -3,7 +3,6 @@ package screens;
 import intefaceAdapters.userLogin.UserLoginResponseFormatter;
 import intefaceAdapters.userLogin.UserLoginScreenInterface;
 import intefaceAdapters.userLogin.UserLoginController;
-import intefaceAdapters.userLogin.UserLoginResponseFormatter;
 import useCases.userLogin.UserLoginPresenter;
 
 import javax.swing.*;
@@ -17,6 +16,9 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
 
     private final UserLoginController controller;
 
+    /**
+     * Builds the gui for the user login screen
+     */
     public UserLoginScreen() {
         JLabel title = new JLabel("Register Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -38,16 +40,29 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
         controller = new UserLoginController(presenter);
 
     }
+
+    /**
+     * calls the controller with the entered email and password as arguments.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         controller.callUserLoginInteractor(email.getText(), String.valueOf(password.getPassword()));
     }
 
+    /**
+     * displays message dialog when login is successful.
+     * @param loginMessage the view to be displayed to the user after successful log in.
+     */
     @Override
     public void showLoggedInMessage(String loginMessage) {
         JOptionPane.showMessageDialog(this, loginMessage);
     }
 
+    /**
+     * displays message dialog when login fails.
+     * @param errorMessage te message to be displayed to the user after failed log in.
+     */
     @Override
     public void showFailureLoginMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);
