@@ -10,6 +10,9 @@ import java.time.format.DateTimeFormatter;
 
 public class UserRegisterResponseFormatter implements UserRegisterPresenter {
 
+    /**
+     * @return success view that is rendered when a new user is successfully created
+     */
     @Override
     public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel response) {
         LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
@@ -17,6 +20,9 @@ public class UserRegisterResponseFormatter implements UserRegisterPresenter {
         return response;
     }
 
+    /**
+     * @return Fail view that is rendered when a user is not created due to error
+     */
     @Override
     public UserRegisterResponseModel prepareFailView(String error) {
         throw new UserCreationFailed(error);
