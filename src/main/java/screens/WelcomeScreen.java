@@ -1,8 +1,20 @@
 package screens;
 
+import entities.UserFactory;
+import screens.userLoginScreen.LoginUserScreen;
+import screens.userRegisterScreen.FileUser;
+import screens.userRegisterScreen.RegisterScreen;
+import screens.userRegisterScreen.UserRegisterController;
+import screens.userRegisterScreen.UserRegisterResponseFormatter;
+import useCases.userRegister.UserRegisterDsGateway;
+import useCases.userRegister.UserRegisterInputBoundary;
+import useCases.userRegister.UserRegisterInteractor;
+import useCases.userRegister.UserRegisterPresenter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 // Frameworks/Drivers layer
 
@@ -39,9 +51,35 @@ public class WelcomeScreen extends JFrame implements ActionListener {
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
         if (evt.getActionCommand().equals("Sign up")) {
-
+            buildRegisterScreen();
         }
+        if (evt.getActionCommand().equals("Log in")) {
+            buildLoginScreen();
+        }
+    }
+
+    public void buildLoginScreen() {
+        LoginUserScreen loginUserScreen = new LoginUserScreen();
+        this.setContentPane(loginUserScreen);
+        this.pack();
+    }
+    public void buildRegisterScreen() {
+        UserRegisterDsGateway user;
+        try {
+            user = new FileUser("./users.csv");
+        } catch (IOException e) {
+            throw new RuntimeException("Could not create file.");
+        }
+        UserRegisterPresenter presenter = new UserRegisterResponseFormatter();
+        UserFactory userFactory = new UserFactory();
+        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
+                user, presenter, userFactory);
+        UserRegisterController userRegisterController = new UserRegisterController(
+                interactor
+        );
+        RegisterScreen registerScreen = new RegisterScreen(userRegisterController);
+        this.setContentPane(registerScreen);
+        this.pack();
     }
 }

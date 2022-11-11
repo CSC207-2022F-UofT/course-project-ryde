@@ -1,4 +1,4 @@
-package intefaceAdapters;
+package intefaceAdapters.userLogin;
 
 import useCases.userLogin.UserLoginInputBoundary;
 import useCases.userLogin.UserLoginInteractor;

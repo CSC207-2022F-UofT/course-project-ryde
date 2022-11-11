@@ -1,4 +1,4 @@
-package screens.userLoginScreen;
+package intefaceAdapters.userLogin;
 
 import useCases.userLogin.UserLoginDsGateway;
 

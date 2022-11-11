@@ -1,6 +1,6 @@
 package useCases.userLogin;
 
-import screens.userLoginScreen.FindUser;
+import intefaceAdapters.userLogin.FindUser;
 
 import java.io.IOException;
 
