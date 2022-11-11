@@ -1,5 +1,7 @@
-package screens.userLoginScreen;
+package intefaceAdapters;
 
+import intefaceAdapters.LoginUserScreenInterface;
+import screens.userLoginScreen.LoggedInUserSingleton;
 import useCases.userLogin.UserLoginPresenter;
 import useCases.userLogin.UserLoginResponseModel;
 

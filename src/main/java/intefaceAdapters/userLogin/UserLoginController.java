@@ -1,4 +1,4 @@
-package screens.userLoginScreen;
+package intefaceAdapters;
 
 import useCases.userLogin.UserLoginInputBoundary;
 import useCases.userLogin.UserLoginInteractor;

@@ -1,4 +1,4 @@
-package screens.userLoginScreen;
+package intefaceAdapters;
 
 public interface LoginUserScreenInterface {
     public void showLoggedInMessage(String loginMessage);
