@@ -1,11 +1,9 @@
 package screens;
 
 import entities.UserFactory;
-import screens.userLoginScreen.LoginUserScreen;
-import screens.userRegisterScreen.FileUser;
-import screens.userRegisterScreen.RegisterScreen;
-import screens.userRegisterScreen.UserRegisterController;
-import screens.userRegisterScreen.UserRegisterResponseFormatter;
+import intefaceAdapters.userRegister.FileUser;
+import intefaceAdapters.userRegister.UserRegisterController;
+import intefaceAdapters.userRegister.UserRegisterResponseFormatter;
 import useCases.userRegister.UserRegisterDsGateway;
 import useCases.userRegister.UserRegisterInputBoundary;
 import useCases.userRegister.UserRegisterInteractor;
@@ -23,7 +21,9 @@ public class WelcomeScreen extends JFrame implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public WelcomeScreen() {
+    private RegisterScreen registerScreen;
+    public WelcomeScreen(RegisterScreen registerScreen) {
+        this.registerScreen = registerScreen;
 
         JLabel title = new JLabel("Welcome Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -52,33 +52,19 @@ public class WelcomeScreen extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Sign up")) {
-            buildRegisterScreen();
+            setRegisterScreen(registerScreen);
         }
         if (evt.getActionCommand().equals("Log in")) {
-            buildLoginScreen();
+           setLoginScreen();
         }
     }
 
-    public void buildLoginScreen() {
+    public void setLoginScreen() {
         LoginUserScreen loginUserScreen = new LoginUserScreen();
         this.setContentPane(loginUserScreen);
         this.pack();
     }
-    public void buildRegisterScreen() {
-        UserRegisterDsGateway user;
-        try {
-            user = new FileUser("./users.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("Could not create file.");
-        }
-        UserRegisterPresenter presenter = new UserRegisterResponseFormatter();
-        UserFactory userFactory = new UserFactory();
-        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
-                user, presenter, userFactory);
-        UserRegisterController userRegisterController = new UserRegisterController(
-                interactor
-        );
-        RegisterScreen registerScreen = new RegisterScreen(userRegisterController);
+    public void setRegisterScreen(RegisterScreen registerScreen) {
         this.setContentPane(registerScreen);
         this.pack();
     }

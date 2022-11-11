@@ -1,9 +1,8 @@
-package screens.userLoginScreen;
+package screens;
 
 import intefaceAdapters.userLogin.LoginUserResponseFormatter;
 import intefaceAdapters.userLogin.LoginUserScreenInterface;
 import intefaceAdapters.userLogin.UserLoginController;
-import screens.userRegisterScreen.LabelTextPanel;
 import useCases.userLogin.UserLoginPresenter;
 
 import javax.swing.*;

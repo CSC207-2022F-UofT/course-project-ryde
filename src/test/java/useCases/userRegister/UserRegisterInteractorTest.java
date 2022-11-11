@@ -4,11 +4,8 @@ import entities.UserFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import screens.userRegisterScreen.MockUserMap;
-import screens.userRegisterScreen.UserRegisterController;
-
-import java.util.HashMap;
-import java.util.Map;
+import intefaceAdapters.userRegister.MockUserMap;
+import intefaceAdapters.userRegister.UserRegisterController;
 
 import static org.junit.jupiter.api.Assertions.*;
 

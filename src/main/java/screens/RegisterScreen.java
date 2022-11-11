@@ -1,4 +1,5 @@
-package screens.userRegisterScreen;
+package screens;
+import intefaceAdapters.userRegister.UserRegisterController;
 import useCases.userRegister.UserRegisterResponseModel;
 
 import javax.swing.*;

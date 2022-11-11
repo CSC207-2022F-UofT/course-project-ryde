@@ -1,4 +1,4 @@
-package screens.userLoginScreen;
+package entities;
 
 public class LoggedInUserSingleton {
     private static LoggedInUserSingleton loggedInUser;

@@ -1,6 +1,6 @@
 package intefaceAdapters.userLogin;
 
-import screens.userLoginScreen.LoggedInUserSingleton;
+import entities.LoggedInUserSingleton;
 import useCases.userLogin.UserLoginPresenter;
 import useCases.userLogin.UserLoginResponseModel;
 
@@ -12,7 +12,6 @@ public class LoginUserResponseFormatter implements UserLoginPresenter {
     }
     @Override
     public void loginSuccess(UserLoginResponseModel userInfo) {
-        LoggedInUserSingleton.init(userInfo.getEmail());
         userLoginView.showLoggedInMessage(userInfo.getLoginMessage());
     }
 

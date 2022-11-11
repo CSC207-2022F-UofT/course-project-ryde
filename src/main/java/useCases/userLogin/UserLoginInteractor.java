@@ -1,5 +1,6 @@
 package useCases.userLogin;
 
+import entities.LoggedInUserSingleton;
 import intefaceAdapters.userLogin.FindUser;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     public void logInUser(UserLoginRequestModel requestModel) {
         if (userLoginDsGateway.validLogin(requestModel.getEmail(), requestModel.getPassword())) {
             UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde!", requestModel.getEmail());
+            LoggedInUserSingleton.init(requestModel.getEmail());
             userLoginPresenter.loginSuccess(userLoginResponseModel);
         } else {
             userLoginPresenter.failLogin("Incorrect email or password");

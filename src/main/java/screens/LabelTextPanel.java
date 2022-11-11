@@ -1,4 +1,4 @@
-package screens.userRegisterScreen;
+package screens;
 
 import javax.swing.*;
 
