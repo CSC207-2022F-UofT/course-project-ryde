@@ -9,4 +9,14 @@ public class LabelTextPanel extends JPanel {
         this.add(label);
         this.add(textField);
     }
+
+    public LabelTextPanel(JLabel label, JTextArea textArea) {
+        this.add(label);
+        this.add(textArea);
+    }
+
+    public LabelTextPanel(JLabel label, JComboBox<String> dropdown) {
+        this.add(label);
+        this.add(dropdown);
+    }
 }

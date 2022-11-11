@@ -1,5 +1,6 @@
 package screens;
 
+import entities.Listing;
 import intefaceAdapters.userLogin.UserLoginResponseFormatter;
 import intefaceAdapters.userLogin.UserLoginScreenInterface;
 import intefaceAdapters.userLogin.UserLoginController;
@@ -13,13 +14,14 @@ import java.awt.event.ActionListener;
 public class UserLoginScreen extends JPanel implements ActionListener, UserLoginScreenInterface {
     private final JTextField email = new JTextField(25);
     private final JPasswordField password = new JPasswordField(15);
-
+    private final JButton cont;
+    private final JPanel continueButtons;
     private final UserLoginController controller;
-
     /**
      * Builds the gui for the user login screen
      */
     public UserLoginScreen() {
+
         JLabel title = new JLabel("Register Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -28,9 +30,15 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Enter password"), password);
         JButton login = new JButton("login");
+        cont = new JButton("Continue");
+        continueButtons = new JPanel();
+        continueButtons.add(cont);
         JPanel buttons = new JPanel();
         buttons.add(login);
+        this.add(continueButtons);
+        continueButtons.setVisible(false);
         login.addActionListener(this);
+        cont.addActionListener(this);
         this.add(title);
         this.add(emailInfo);
         this.add(passwordInfo);
@@ -56,7 +64,12 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
      */
     @Override
     public void showLoggedInMessage(String loginMessage) {
+//        ListingCRUDScreen listingCRUDScreen = new ListingCRUDScreen();
+//        this.add(listingCRUDScreen);
+//        this.add(listingCRUDScreen);
         JOptionPane.showMessageDialog(this, loginMessage);
+        continueButtons.setVisible(true);
+        this.revalidate();
     }
 
     /**

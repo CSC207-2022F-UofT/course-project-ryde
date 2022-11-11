@@ -25,6 +25,7 @@ public class WelcomeScreen extends JFrame implements ActionListener {
     public WelcomeScreen(RegisterScreen registerScreen) {
         this.registerScreen = registerScreen;
 
+
         JLabel title = new JLabel("Welcome Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -58,6 +59,8 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         if (evt.getActionCommand().equals("Log in")) {
            setLoginScreen();
         }
+
+        System.out.println(evt.getActionCommand());
     }
 
     private void setLoginScreen() {
@@ -67,6 +70,12 @@ public class WelcomeScreen extends JFrame implements ActionListener {
     }
     private void setRegisterScreen(RegisterScreen registerScreen) {
         this.setContentPane(registerScreen);
+        this.pack();
+    }
+
+    private void setCRUDScreen() {
+        ListingCRUDScreen listingCRUDScreen = new ListingCRUDScreen();
+        this.setContentPane(listingCRUDScreen);
         this.pack();
     }
 }
