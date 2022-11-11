@@ -1,4 +1,4 @@
-package screens.userRegisterScreen;
+package intefaceAdapters.userRegister;
 
 import useCases.userRegister.UserRegisterPresenter;
 import useCases.userRegister.UserRegisterResponseModel;

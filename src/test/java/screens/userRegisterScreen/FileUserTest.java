@@ -1,11 +1,11 @@
 package screens.userRegisterScreen;
 
+import intefaceAdapters.userRegister.FileUser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import useCases.userRegister.UserRegisterDsGateway;
 import useCases.userRegister.UserRegisterDsRequestModel;
-import useCases.userRegister.UserRegisterRequestModel;
 
 import java.io.BufferedWriter;
 import java.io.File;
