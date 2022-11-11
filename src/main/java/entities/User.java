@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Abstract class for a User account used to log in to the application
+ */
 public abstract class User {
     private final String email;
     private final String password;

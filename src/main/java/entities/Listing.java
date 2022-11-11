@@ -1,6 +1,9 @@
 package entities;
 import java.time.LocalDate;
 
+/**
+ * Represents a listing which is an ad for a car that a user may upload to sell on the application
+ */
 public class Listing {
     private final int id;
     private String brand;

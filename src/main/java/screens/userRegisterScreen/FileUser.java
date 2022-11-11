@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Class to read users and store them in a hashmap, then add new user to the hashmap and create a new database
+ * with the new user.
+ */
 public class FileUser implements UserRegisterDsGateway {
 
     private final File csvFile;
@@ -17,6 +21,10 @@ public class FileUser implements UserRegisterDsGateway {
 
     private final Map<String, UserRegisterDsRequestModel> accounts = new HashMap<>();
 
+    /**
+     * @param csvPath for this application this will be the users.csv file where all the user accounts are stored
+     * This reads the csv file and stores all the users in accounts
+     */
     public FileUser(String csvPath) throws IOException {
         csvFile = new File(csvPath);
 
@@ -62,6 +70,9 @@ public class FileUser implements UserRegisterDsGateway {
         this.save();
     }
 
+    /**
+     * Rewrites the csv file but this time with the new user account added
+     */
     private void save() {
         BufferedWriter writer;
         try {
