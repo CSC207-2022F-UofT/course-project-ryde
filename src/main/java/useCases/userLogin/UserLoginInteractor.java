@@ -21,9 +21,11 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
 
     @Override
     public void logInUser(UserLoginRequestModel requestModel) {
-        if (userLoginDsGateway.validLogin(requestModel.getEmail(), requestModel.getPassword())) {
-            UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde!", requestModel.getEmail());
-            LoggedInUserSingleton.init(requestModel.getEmail());
+        String userEmail = requestModel.getEmail();
+        String userPassword = requestModel.getPassword();
+        if (userLoginDsGateway.validLogin(userEmail, userPassword)) {
+            UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde!", userEmail);
+            LoggedInUserSingleton.init(userEmail);
             userLoginPresenter.loginSuccess(userLoginResponseModel);
         } else {
             userLoginPresenter.failLogin("Incorrect email or password");

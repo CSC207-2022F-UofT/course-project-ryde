@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FindUser implements UserLoginDsGateway {
-    private final Map<String, String> accounts = new HashMap<>();
+    private final Map<String, String> emailToPassword = new HashMap<>();
 
 
     public FindUser(String csvPath) throws IOException {
@@ -17,6 +17,10 @@ public class FindUser implements UserLoginDsGateway {
         headers.put("email", 0);
         headers.put("password", 1);
         headers.put("name", 2);
+        mapEmailToPassword(csvFile, headers);
+    }
+
+    private void mapEmailToPassword(File csvFile, Map<String, Integer> headers) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(csvFile));
         reader.readLine(); // skip header
 
@@ -25,15 +29,16 @@ public class FindUser implements UserLoginDsGateway {
             String[] col = row.split(",");
             String email = String.valueOf(col[headers.get("email")]);
             String password = String.valueOf(col[headers.get("password")]);
-            accounts.put(email,password);
+            emailToPassword.put(email,password);
         }
 
         reader.close();
     }
+
     @Override
     public boolean validLogin(String email, String password){
-        boolean correctEmail = accounts.containsKey(email);
-        boolean correctPassword = password.equals(accounts.get(email));
+        boolean correctEmail = emailToPassword.containsKey(email);
+        boolean correctPassword = password.equals(emailToPassword.get(email));
         return correctPassword && correctEmail;
     }
 }
