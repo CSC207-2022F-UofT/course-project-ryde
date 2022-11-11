@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
 public class UserLoginScreen extends JPanel implements ActionListener, UserLoginScreenInterface {
     private final JTextField email = new JTextField(25);
     private final JPasswordField password = new JPasswordField(15);
-    private final JButton cont;
-    private final JPanel continueButtons;
+    public final JButton login;
+    public final JButton continueToListings;
     private final UserLoginController controller;
     /**
      * Builds the gui for the user login screen
@@ -29,20 +29,20 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
                 new JLabel("Email"), email);
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Enter password"), password);
-        JButton login = new JButton("login");
-        cont = new JButton("Continue");
-        continueButtons = new JPanel();
-        continueButtons.add(cont);
+        login = new JButton("login User");
+        continueToListings = new JButton("Continue");
+        JPanel continueButton = new JPanel();
+        continueButton.add(continueToListings);
         JPanel buttons = new JPanel();
         buttons.add(login);
-        this.add(continueButtons);
-        continueButtons.setVisible(false);
         login.addActionListener(this);
-        cont.addActionListener(this);
+        continueToListings.addActionListener(this);
+        continueToListings.setVisible(false);
         this.add(title);
         this.add(emailInfo);
         this.add(passwordInfo);
         this.add(buttons);
+        this.add(continueButton);
 
         UserLoginPresenter presenter = new UserLoginResponseFormatter(this);
         controller = new UserLoginController(presenter);
@@ -64,11 +64,9 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
      */
     @Override
     public void showLoggedInMessage(String loginMessage) {
-//        ListingCRUDScreen listingCRUDScreen = new ListingCRUDScreen();
-//        this.add(listingCRUDScreen);
-//        this.add(listingCRUDScreen);
         JOptionPane.showMessageDialog(this, loginMessage);
-        continueButtons.setVisible(true);
+        login.setVisible(false);
+        continueToListings.setVisible(true);
         this.revalidate();
     }
 
@@ -80,5 +78,9 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
     public void showFailureLoginMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);
 
+    }
+
+    public JButton getContinueButton() {
+        return continueToListings;
     }
 }
