@@ -12,14 +12,14 @@ public class UserRegisterController {
         this.userInput = accountGateway;
     }
 
-    UserRegisterResponseModel create(String email, String password1, String password2, String name) {
+    public UserRegisterResponseModel create(String email, String password1, String password2, String name) {
         UserRegisterRequestModel requestModel = new UserRegisterRequestModel(
                 email, password1, password2, name);
 
         return userInput.create(requestModel);
     }
 
-    UserRegisterResponseModel create(String email, String password1, String password2, String name, String location) {
+   public UserRegisterResponseModel create(String email, String password1, String password2, String name, String location) {
         UserRegisterRequestModel requestModel = new UserRegisterRequestModel(
                 email, password1, password2, name, location);
 

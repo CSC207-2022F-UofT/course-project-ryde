@@ -13,9 +13,9 @@ public class UserRegisterResponseModel {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+//    public void setLogin(String login) {
+//        this.login = login;
+//    }
 
     public String getCreationTime() {
         return creationTime;
