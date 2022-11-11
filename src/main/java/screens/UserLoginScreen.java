@@ -1,8 +1,9 @@
 package screens;
 
-import intefaceAdapters.userLogin.LoginUserResponseFormatter;
-import intefaceAdapters.userLogin.LoginUserScreenInterface;
+import intefaceAdapters.userLogin.UserLoginResponseFormatter;
+import intefaceAdapters.userLogin.UserLoginScreenInterface;
 import intefaceAdapters.userLogin.UserLoginController;
+import intefaceAdapters.userLogin.UserLoginResponseFormatter;
 import useCases.userLogin.UserLoginPresenter;
 
 import javax.swing.*;
@@ -10,13 +11,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginUserScreen extends JPanel implements ActionListener, LoginUserScreenInterface {
+public class UserLoginScreen extends JPanel implements ActionListener, UserLoginScreenInterface {
     private final JTextField email = new JTextField(25);
     private final JPasswordField password = new JPasswordField(15);
 
     private final UserLoginController controller;
 
-    public LoginUserScreen() {
+    public UserLoginScreen() {
         JLabel title = new JLabel("Register Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -33,7 +34,7 @@ public class LoginUserScreen extends JPanel implements ActionListener, LoginUser
         this.add(passwordInfo);
         this.add(buttons);
 
-        UserLoginPresenter presenter = new LoginUserResponseFormatter(this);
+        UserLoginPresenter presenter = new UserLoginResponseFormatter(this);
         controller = new UserLoginController(presenter);
 
     }

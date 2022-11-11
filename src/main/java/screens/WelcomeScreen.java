@@ -60,7 +60,7 @@ public class WelcomeScreen extends JFrame implements ActionListener {
     }
 
     public void setLoginScreen() {
-        LoginUserScreen loginUserScreen = new LoginUserScreen();
+        UserLoginScreen loginUserScreen = new UserLoginScreen();
         this.setContentPane(loginUserScreen);
         this.pack();
     }

@@ -1,12 +1,13 @@
 package intefaceAdapters.userLogin;
 
+import screens.UserLoginScreen;
 import useCases.userLogin.UserLoginPresenter;
 import useCases.userLogin.UserLoginResponseModel;
 
-public class LoginUserResponseFormatter implements UserLoginPresenter {
-    private final LoginUserScreenInterface userLoginView;
+public class UserLoginResponseFormatter implements UserLoginPresenter {
+    private final UserLoginScreenInterface userLoginView;
 
-    public LoginUserResponseFormatter(LoginUserScreenInterface userLoginView) {
+    public UserLoginResponseFormatter(UserLoginScreenInterface userLoginView) {
         this.userLoginView = userLoginView;
     }
     @Override
