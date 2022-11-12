@@ -18,6 +18,7 @@ import java.util.List;
 // Frameworks/Drivers layer
 
 public class WelcomeScreen extends JFrame implements ActionListener {
+    private JPanel main;
 
     /**
      * A window with a title and a JButton.
@@ -40,7 +41,7 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         logIn.addActionListener(this);
         signUp.addActionListener(this);
 
-        JPanel main = new JPanel();
+        main = new JPanel();
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
         main.add(title);
@@ -61,7 +62,12 @@ public class WelcomeScreen extends JFrame implements ActionListener {
            setLoginScreen();
         }
         if (evt.getActionCommand().equals("Continue")) {
-            setListingCRUDScreen();
+            this.dispose();
+            setCRUDScreen();
+        }
+        if (evt.getActionCommand().equals("Go Back") || evt.getActionCommand().equals("Exit")) {
+            this.setContentPane(main);
+            this.pack();
         }
         System.out.println(evt.getActionCommand());
     }
@@ -70,21 +76,17 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         UserLoginScreen loginUserScreen = new UserLoginScreen();
         this.setContentPane(loginUserScreen);
         loginUserScreen.getContinueButton().addActionListener(this);
+        loginUserScreen.getExitLoginButton().addActionListener(this);
         this.pack();
     }
     private void setRegisterScreen(RegisterScreen registerScreen) {
         this.setContentPane(registerScreen);
+        registerScreen.getBackButton().addActionListener(this);
         this.pack();
     }
 
-    private void setListingCRUDScreen() {
-        ListingCRUDScreen listingCRUDScreen = new ListingCRUDScreen();
-        this.setContentPane(listingCRUDScreen);
-        this.pack();
-    }
     private void setCRUDScreen() {
         ListingCRUDScreen listingCRUDScreen = new ListingCRUDScreen();
-        this.setContentPane(listingCRUDScreen);
-        this.pack();
+        listingCRUDScreen.setVisible(true);
     }
 }

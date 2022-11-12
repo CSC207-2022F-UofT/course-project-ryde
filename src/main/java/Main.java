@@ -2,7 +2,6 @@ import entities.UserFactory;
 import intefaceAdapters.userRegister.FileUser;
 import intefaceAdapters.userRegister.UserRegisterController;
 import intefaceAdapters.userRegister.UserRegisterResponseFormatter;
-import screens.ListingCRUDScreen;
 import screens.RegisterScreen;
 import screens.WelcomeScreen;
 import useCases.userRegister.UserRegisterDsGateway;
@@ -11,7 +10,6 @@ import useCases.userRegister.UserRegisterInteractor;
 import useCases.userRegister.UserRegisterPresenter;
 
 import java.io.IOException;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {

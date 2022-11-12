@@ -14,13 +14,14 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
     private CreateListingPresenter presenter;
     private ListingFactory listingFactory;
 
-    public CreateListingInteractor(CreateListingPresenter presenter) {
+    public CreateListingInteractor(CreateListingPresenter presenter, ListingFactory listingFactory) {
         this.presenter = presenter;
         try {
-            gateway = new ListingRepo("./users.csv");
+            gateway = new ListingRepo("./listings.csv");
         } catch (IOException e) {
             throw new RuntimeException("Could not find file");
         }
+        this.listingFactory = listingFactory;
     }
 
     @Override
@@ -29,16 +30,29 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
         String brand = requestModel.getBrand();
         String name = requestModel.getName();
         String color = requestModel.getColor();
-        int year = requestModel.getYear();
+        String year = requestModel.getYear();
+        int yearNum = 2022;
+        if (isNumericInt(year)) {
+            yearNum = Integer.parseInt(year);
+        } else {
+            presenter.prepareFailView("Please enter a valid year");
+        }
         int numSeats = requestModel.getNumSeats();
-        float price = requestModel.getPrice();
+        String price = requestModel.getPrice();
+        float priceNum = 0.0F;
+        if (isNumericFloat(price)) {
+            priceNum = Float.parseFloat(price);
+        } else {
+            presenter.prepareFailView("Please enter a valid number");
+        }
         String userEmail = LoggedInUserSingleton.getInstance().getEmail();
         String phoneNumber = requestModel.getPhoneNumber();
         String description = requestModel.getDescription();
         LocalDateTime now = LocalDateTime.now();
 
+
         String type = requestModel.getType();
-        Listing listing  = listingFactory.create(uniqueId,brand,name, color,year, numSeats, price,now, userEmail, phoneNumber, description, type);
+        Listing listing  = listingFactory.create(uniqueId,brand,name, color,yearNum, numSeats, priceNum,now, userEmail, phoneNumber, description, type);
 
         if(listing.validType()) {
             CreateListingResponseModel responseModel = new CreateListingResponseModel(String.format("%s listing created!", requestModel.getName()));
@@ -48,6 +62,24 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
             presenter.prepareSuccessView(responseModel);
         } else {
             presenter.prepareFailView("Incorrect type of car. (This should not be occurring)");
+        }
+    }
+
+    private boolean isNumericInt(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+    private boolean isNumericFloat(String str) {
+        try {
+            Float.parseFloat(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
         }
     }
 }

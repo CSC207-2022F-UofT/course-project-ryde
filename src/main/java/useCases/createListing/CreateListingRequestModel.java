@@ -9,16 +9,16 @@ public class CreateListingRequestModel {
 
     private final String name;
     private final String color;
-    private final int year;
+    private final String year;
     private final int numSeats;
-    private final float price;
+    private final String price;
 
     private final String phoneNumber;
     private final String description;
     private final String type;
 
 
-    public CreateListingRequestModel(String brand, String name, String color, int year, int numSeats, float price, String phoneNumber, String description, String type) {
+    public CreateListingRequestModel(String brand, String name, String color, String year, int numSeats, String price, String phoneNumber, String description, String type) {
         this.brand = brand;
         this.name = name;
         this.color = color;
@@ -38,7 +38,7 @@ public class CreateListingRequestModel {
         return color;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -46,7 +46,7 @@ public class CreateListingRequestModel {
         return numSeats;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 

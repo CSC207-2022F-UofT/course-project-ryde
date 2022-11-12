@@ -1,5 +1,6 @@
 package screens;
 
+import entities.ListingFactory;
 import intefaceAdapters.createListing.CreateListingController;
 import intefaceAdapters.createListing.CreateListingResponseFormatter;
 import intefaceAdapters.createListing.CreateListingScreenInterface;
@@ -24,6 +25,8 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
     private final JComboBox<String> typeList = new JComboBox<>(types);
 
     private final CreateListingController controller;
+    private final ListingFactory listingFactory;
+    public final JButton back;
 
     public CreateListingScreen() {
         JLabel title = new JLabel("Add New Listing Screen");
@@ -48,9 +51,15 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
         LabelTextPanel typeInfo = new LabelTextPanel(
                 new JLabel("Type"), typeList);
         JButton createListing = new JButton("Create Listing");
+        back = new JButton("Go Back");
+        back.addActionListener(this);
+        JPanel backButton = new JPanel();
+        backButton.add(back);
         JPanel buttons = new JPanel();
         buttons.add(createListing);
         createListing.addActionListener(this);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
         this.add(brandInfo);
         this.add(nameInfo);
@@ -59,16 +68,19 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
         this.add(priceInfo);
         this.add(phoneNumberInfo);
         this.add(descriptionInfo);
+        this.add(numSeatsInfo);
+        this.add(typeInfo);
         this.add(buttons);
+        this.add(backButton);
 
         CreateListingPresenter presenter = new CreateListingResponseFormatter(this);
-        controller = new CreateListingController(presenter);
+        listingFactory = new ListingFactory();
+        controller = new CreateListingController(presenter, listingFactory);
     }
 
     @Override
     public void showCreatedListingMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
-
     }
 
     @Override
@@ -79,8 +91,15 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        controller.executeInteractor(brand.getText(), name.getText(), color.getText(), Integer.parseInt(year.getText()),
-                Integer.parseInt(seats[seatList.getSelectedIndex()]), Float.parseFloat(price.getText()),
-                phoneNumber.getText(), description.getText(), types[typeList.getSelectedIndex()]);
+        if (e.getActionCommand().equals("Create Listing")) {
+            controller.executeInteractor(brand.getText(), name.getText(), color.getText(), year.getText(),
+                    Integer.parseInt(seats[seatList.getSelectedIndex()]), price.getText(),
+                    phoneNumber.getText(), description.getText(), types[typeList.getSelectedIndex()]);
+        };
+
+    }
+
+    public JButton getBackButton() {
+        return back;
     }
 }
