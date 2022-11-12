@@ -31,37 +31,41 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
         String name = requestModel.getName();
         String color = requestModel.getColor();
         String year = requestModel.getYear();
-        int yearNum = 2022;
-        if (isNumericInt(year)) {
-            yearNum = Integer.parseInt(year);
-        } else {
-            presenter.prepareFailView("Please enter a valid year");
-        }
         int numSeats = requestModel.getNumSeats();
         String price = requestModel.getPrice();
-        float priceNum = 0.0F;
-        if (isNumericFloat(price)) {
-            priceNum = Float.parseFloat(price);
-        } else {
-            presenter.prepareFailView("Please enter a valid number");
-        }
         String userEmail = LoggedInUserSingleton.getInstance().getEmail();
         String phoneNumber = requestModel.getPhoneNumber();
         String description = requestModel.getDescription();
         LocalDateTime now = LocalDateTime.now();
-
-
         String type = requestModel.getType();
-        Listing listing  = listingFactory.create(uniqueId,brand,name, color,yearNum, numSeats, priceNum,now, userEmail, phoneNumber, description, type);
+        int yearNum = 2022;
+        float priceNum = 0.0F;
 
-        if(listing.validType()) {
-            CreateListingResponseModel responseModel = new CreateListingResponseModel(String.format("%s listing created!", requestModel.getName()));
-            CreateListingDsRequestModel dsRequestModel = new CreateListingDsRequestModel(uniqueId, brand, name, color, String.valueOf(year), String.valueOf(numSeats),
-                    String.valueOf(price), userEmail, phoneNumber, description, type, now);
-            gateway.save(dsRequestModel);
-            presenter.prepareSuccessView(responseModel);
+        if (brand.equals("") || name.equals("") || color.equals("") || description.equals("")) {
+            presenter.prepareFailView("Please fill in all the fields for the listing.");
+        } else if (!isNumericInt(year)) {
+            presenter.prepareFailView("Please enter a valid year");
+        } else if (!isNumericFloat(price)){
+            presenter.prepareFailView("Please enter a valid price");
+        } else if (!isNumericInt(phoneNumber) || phoneNumber.length() != 10) {
+            presenter.prepareFailView("Please enter a valid number");
         } else {
-            presenter.prepareFailView("Incorrect type of car. (This should not be occurring)");
+            yearNum = Integer.parseInt(year);
+            priceNum = Float.parseFloat(price);
+            Listing listing  = listingFactory.create(uniqueId,brand,name, color,yearNum, numSeats,
+                    priceNum,now, userEmail, phoneNumber, description, type);
+
+            if(listing.validType()) {
+                CreateListingResponseModel responseModel =
+                        new CreateListingResponseModel(String.format("%s listing created!", requestModel.getName()));
+                CreateListingDsRequestModel dsRequestModel = new CreateListingDsRequestModel(uniqueId, brand, name,
+                        color, year, String.valueOf(numSeats),
+                        price, userEmail, phoneNumber, description, type, now);
+                gateway.save(dsRequestModel);
+                presenter.prepareSuccessView(responseModel);
+            } else {
+                presenter.prepareFailView("Incorrect type of car. (This should not be occurring)");
+            }
         }
     }
 

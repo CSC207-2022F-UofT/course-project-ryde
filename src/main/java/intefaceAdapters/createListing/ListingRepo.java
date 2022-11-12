@@ -2,8 +2,6 @@ package intefaceAdapters.createListing;
 
 import useCases.createListing.CreateListingDsGateway;
 import useCases.createListing.CreateListingDsRequestModel;
-import useCases.createListing.CreateListingRequestModel;
-import useCases.userRegister.UserRegisterDsRequestModel;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -12,25 +10,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ListingRepo implements CreateListingDsGateway {
-    private File csvFile;
+    private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
     private final Map<String, CreateListingDsRequestModel> listingsMap = new HashMap<>();
 
     public ListingRepo (String csvPath) throws IOException {
         csvFile = new File(csvPath);
-        headers.put("uniqueId", 0);
-        headers.put("brand", 1);
-        headers.put("name", 2);
-        headers.put("color", 3);
-        headers.put("year", 4);
-        headers.put("numSeats", 5);
-        headers.put("price", 6);
-        headers.put("userEmail", 7);
-        headers.put("phoneNumber", 8);
-        headers.put("description", 9);
-        headers.put("type", 10);
-        headers.put("creationTime", 11);
 
+        String[] headerList = {"uniqueId", "brand", "name", "color", "year", "numSeats", "price", "userEmail",
+        "phoneNumber", "description", "type", "creationTime"};
+        for (int i = 0; i < headerList.length; i++) {
+            headers.put(headerList[i], i);
+        }
 
         if (csvFile.length() == 0) {
             save();

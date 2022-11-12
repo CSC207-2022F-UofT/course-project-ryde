@@ -29,6 +29,25 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
     public final JButton back;
 
     public CreateListingScreen() {
+        renderCreateListingComponents();
+        back = createBackButton();
+
+        CreateListingPresenter presenter = new CreateListingResponseFormatter(this);
+        listingFactory = new ListingFactory();
+        controller = new CreateListingController(presenter, listingFactory);
+    }
+
+    private JButton createBackButton() {
+        final JButton back;
+        back = new JButton("Go Back");
+        back.addActionListener(this);
+        JPanel backButton = new JPanel();
+        backButton.add(back);
+        this.add(backButton);
+        return back;
+    }
+
+    private void renderCreateListingComponents() {
         JLabel title = new JLabel("Add New Listing Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -51,10 +70,6 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
         LabelTextPanel typeInfo = new LabelTextPanel(
                 new JLabel("Type"), typeList);
         JButton createListing = new JButton("Create Listing");
-        back = new JButton("Go Back");
-        back.addActionListener(this);
-        JPanel backButton = new JPanel();
-        backButton.add(back);
         JPanel buttons = new JPanel();
         buttons.add(createListing);
         createListing.addActionListener(this);
@@ -71,11 +86,6 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
         this.add(numSeatsInfo);
         this.add(typeInfo);
         this.add(buttons);
-        this.add(backButton);
-
-        CreateListingPresenter presenter = new CreateListingResponseFormatter(this);
-        listingFactory = new ListingFactory();
-        controller = new CreateListingController(presenter, listingFactory);
     }
 
     @Override
