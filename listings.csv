@@ -1,8 +1,0 @@
-uniqueId,brand,name,color,year,numSeats,price,userEmail,phoneNumber,description,type,creationTime
-0f2d1658-e124-44a5-9780-ec112ed6c227,,,,,2,,pj@gmail.com,,,Used,2022-11-11T20:01:12.622519
-9a7e8c61-0b3e-4d19-9f8f-2e0fbba8fec7,Honda,Accord,Black,2002,2,15673.45,pj@gmail.com,1234567899,hello there,Used,2022-11-11T20:11:35.185317
-e4e19369-5fcd-4da4-975c-6f014822bd5f,,,,,2,,pj@gmail.com,,,Used,2022-11-11T20:01:36.296051
-aa932a13-8af7-4d09-bd38-ad5b93d65743,Bugatti,Veron,green,2012,2,700000.0,ryan@gmail.com,1231233,cool car,New,2022-11-11T17:43:33.891555
-f861e479-010c-4b72-81aa-ac588121daac,Honda,Accord,Black,2002,2,958.5,ananya@gmail.com,1293892357,hello there my friend,New,2022-11-11T19:06:02.465798
-fb332999-1f76-4b36-846e-fa0028ba7e37,Chevrolet,chinki,white,2002,2,1234567899,pj@gmail.com,1234567899,hello there my friends,New,2022-11-11T20:12:39.317736
-efcf9d4b-9c70-4114-a711-b0d1f80c1516,Honda,Accord,Black,2009,2,23498.42,ryan@gmail.com,123455667,hello there,Used,2022-11-11T17:36:54.058482
