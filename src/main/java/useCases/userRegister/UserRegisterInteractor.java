@@ -25,6 +25,9 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary{
      */
     @Override
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) {
+        if (requestModel.getName().equals("")){
+            return userPresenter.prepareFailView("Please fill out the the form fully");
+        }
         if (userDsGateway.existsByEmail(requestModel.getEmail())) {
             return userPresenter.prepareFailView("User already exists.");
         } else if (!requestModel.getPassword().equals(requestModel.getRepeatPassword())) {

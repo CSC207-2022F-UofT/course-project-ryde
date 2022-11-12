@@ -16,6 +16,8 @@ public class RegisterScreen extends JPanel implements ActionListener{
     String location;
     JRadioButton rb1,rb2;
 
+    public final JButton back;
+
     UserRegisterController userRegisterController;
 
     public RegisterScreen(UserRegisterController controller) {
@@ -33,7 +35,7 @@ public class RegisterScreen extends JPanel implements ActionListener{
                 new JLabel("Choose password"), password);
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
                 new JLabel("Enter password again"), repeatPassword);
-        rb1=new JRadioButton("Individual");
+        rb1=new JRadioButton("Individual", true);
         rb1.setBounds(100,50,100,30);
         rb2=new JRadioButton("Dealership");
         rb2.setBounds(100,100,100,30);
@@ -41,14 +43,17 @@ public class RegisterScreen extends JPanel implements ActionListener{
         bg.add(rb1);bg.add(rb2);
 
         JButton signUp = new JButton("Sign up");
-        JButton cancel = new JButton("Cancel");
+        back = new JButton("Go Back");
+        back.addActionListener(this);
+        JPanel backButton = new JPanel();
+        backButton.add(back);
 
         JPanel buttons = new JPanel();
         buttons.add(signUp);
-        buttons.add(cancel);
+        buttons.add(back);
 
         signUp.addActionListener(this);
-        cancel.addActionListener(this);
+        back.addActionListener(this);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -65,8 +70,7 @@ public class RegisterScreen extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
-
-        if (evt.getActionCommand().equals("Cancel")) {
+        if (evt.getActionCommand().equals("Go Back")){
             return;
         }
 
@@ -97,4 +101,7 @@ public class RegisterScreen extends JPanel implements ActionListener{
         }
     }
 
+    public JButton getBackButton() {
+        return back;
+    }
 }
