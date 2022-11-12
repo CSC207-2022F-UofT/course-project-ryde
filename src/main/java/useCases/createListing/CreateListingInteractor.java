@@ -43,11 +43,11 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
 
         if (brand.equals("") || name.equals("") || color.equals("") || description.equals("")) {
             presenter.prepareFailView("Please fill in all the fields for the listing.");
-        } else if (!isNumericInt(year)) {
+        } else if (isNotNumericInt(year)) {
             presenter.prepareFailView("Please enter a valid year");
         } else if (!isNumericFloat(price)){
             presenter.prepareFailView("Please enter a valid price");
-        } else if (!isNumericInt(phoneNumber) || phoneNumber.length() != 10) {
+        } else if (!isNumericLong(phoneNumber) || phoneNumber.length() != 10) {
             presenter.prepareFailView("Please enter a valid number");
         } else {
             yearNum = Integer.parseInt(year);
@@ -69,18 +69,27 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
         }
     }
 
-    private boolean isNumericInt(String str) {
+    private boolean isNotNumericInt(String str) {
         try {
             Integer.parseInt(str);
-            return true;
-        } catch(NumberFormatException e){
             return false;
+        } catch(NumberFormatException e){
+            return true;
         }
     }
 
     private boolean isNumericFloat(String str) {
         try {
             Float.parseFloat(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+    private boolean isNumericLong(String str) {
+        try {
+            Long.parseLong(str);
             return true;
         } catch(NumberFormatException e){
             return false;
