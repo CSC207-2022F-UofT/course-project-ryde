@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class CreateListingInteractor implements CreateListingInputBoundary{
-    private CreateListingDsGateway gateway;
-    private CreateListingPresenter presenter;
-    private ListingFactory listingFactory;
+    private final CreateListingDsGateway gateway;
+    private final CreateListingPresenter presenter;
+    private final ListingFactory listingFactory;
 
     public CreateListingInteractor(CreateListingPresenter presenter, ListingFactory listingFactory) {
         this.presenter = presenter;
