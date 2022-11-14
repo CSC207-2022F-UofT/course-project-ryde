@@ -16,12 +16,7 @@ public class DisplayListingResponseFormatter implements DisplayListingPresenter 
     @Override
     public void displayFilteredListings(DisplayListingResponseModel responseModel) {
         List<DisplayListingDsRequestModel> filteredListings = responseModel.getFilteredListings();
-        String message = responseModel.getMessage();
-        displayListingView.displayMessage(message);
-        for (DisplayListingDsRequestModel listing :
-                filteredListings) {
-            displayListingView.displayListing(listing);
-        }
+        displayListingView.displayListing(filteredListings);
     }
 
     @Override

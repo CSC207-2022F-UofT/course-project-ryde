@@ -47,6 +47,10 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
             this.setContentPane(main);
             this.pack();
         };
+        if (e.getActionCommand().equals("Exit")) {
+            this.setContentPane(main);
+            this.pack();
+        }
     }
 
     private void setCreateScreen() {
@@ -59,6 +63,7 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
     private void setDisplayListingScreen() {
         DisplayListingScreen displayListingScreen = new DisplayListingScreen();
         this.setContentPane(displayListingScreen);
+        displayListingScreen.exitDisplayButton().addActionListener(this);
         this.pack();
     }
 }

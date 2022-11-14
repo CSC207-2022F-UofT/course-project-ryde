@@ -25,7 +25,6 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
     private final JComboBox<String> typeList = new JComboBox<>(types);
 
     private final CreateListingController controller;
-    private final ListingFactory listingFactory;
     public final JButton back;
 
     public CreateListingScreen() {
@@ -33,7 +32,7 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
         back = createBackButton();
 
         CreateListingPresenter presenter = new CreateListingResponseFormatter(this);
-        listingFactory = new ListingFactory();
+        ListingFactory listingFactory = new ListingFactory();
         controller = new CreateListingController(presenter, listingFactory);
     }
 

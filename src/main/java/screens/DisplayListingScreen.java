@@ -12,6 +12,7 @@ import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class DisplayListingScreen extends JPanel implements ActionListener, DisplayListingScreenInterface {
 
@@ -25,10 +26,10 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
     private final JTextField maxPrice = new JTextField(25);
     private final JTextField minPrice = new JTextField(25);
 
-    private final JTextField phoneNumber = new JTextField(25);
     private final JTextArea description = new JTextArea(5, 20);
     private final String[] types = {"Used", "New", "Rent"};
     private final JComboBox<String> typeList = new JComboBox<>(types);
+    public final JButton back;
 
     private final DisplayListingController displayListingController;
 
@@ -52,8 +53,6 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
                 new JLabel("Maximum Price of Car"), maxPrice);
         LabelTextPanel minPriceInfo = new LabelTextPanel(
                 new JLabel("Minimum Price of Car"), minPrice);
-        LabelTextPanel phoneNumberInfo = new LabelTextPanel(
-                new JLabel("Enter Phone Number"), phoneNumber);
         LabelTextPanel descriptionInfo = new LabelTextPanel(
                 new JLabel("Description"), description);
         LabelTextPanel typeInfo = new LabelTextPanel(
@@ -72,11 +71,11 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
         this.add(minYearInfo);
         this.add(maxPriceInfo);
         this.add(minPriceInfo);
-        this.add(phoneNumberInfo);
         this.add(descriptionInfo);
         this.add(numSeatsInfo);
         this.add(typeInfo);
         this.add(buttons);
+        back = createBackButton();
 
         DisplayListingPresenter displayListingPresenter = new DisplayListingResponseFormatter(this);
         displayListingController = new DisplayListingController(displayListingPresenter);
@@ -93,11 +92,28 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
 
     // fill out this function to complete use case.
     @Override
-    public void displayListing(DisplayListingDsRequestModel filteredListing) {
+    public void displayListing(List<DisplayListingDsRequestModel> filteredListings) {
+        JDialog dialog = new ListingsPopUp(filteredListings);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setVisible(true);
     }
 
     @Override
     public void displayMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
+    }
+
+    private JButton createBackButton() {
+        final JButton back;
+        back = new JButton("Exit");
+        back.addActionListener(this);
+        JPanel backButton = new JPanel();
+        backButton.add(back);
+        this.add(backButton);
+        return back;
+    }
+
+    public JButton exitDisplayButton() {
+        return back;
     }
 }

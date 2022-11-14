@@ -26,7 +26,7 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
      */
     public UserLoginScreen() {
 
-        title = new JLabel("Register Screen");
+        title = new JLabel("Login");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         emailInfo = new LabelTextPanel(
