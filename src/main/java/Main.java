@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        // Build the main program window
         RegisterScreen registerScreen = getRegisterScreen();
         WelcomeScreen welcomeScreen = new WelcomeScreen(registerScreen);
         welcomeScreen.setVisible(true);
