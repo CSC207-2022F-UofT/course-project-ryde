@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteListingInteractor implements DeleteListingInputBoundary{
-    private DeleteListingDsGateway gateway;
+    private final DeleteListingDsGateway gateway;
     private final DeleteListingPresenter presenter;
 
     public DeleteListingInteractor(DeleteListingPresenter presenter) {
@@ -35,7 +35,7 @@ public class DeleteListingInteractor implements DeleteListingInputBoundary{
 
     @Override
     public void deleteListing(DeleteListingRequestModel deleteListingRequestModel) {
-        gateway.deleteListing(deleteListingRequestModel.getUuid());
-        presenter.deletedListingMessage("Successfully deleted listing!");
+        String output = gateway.deleteListing(deleteListingRequestModel.getUuid());
+        presenter.deletedListingMessage(String.format("Successfully deleted %s listing!", output));
     }
 }

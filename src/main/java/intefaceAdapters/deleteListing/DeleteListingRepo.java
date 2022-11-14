@@ -51,9 +51,13 @@ public class DeleteListingRepo implements DeleteListingDsGateway {
     }
 
     @Override
-    public void deleteListing(String uuid){
+    public String deleteListing(String uuid){
+        DeleteListingDsRequestModel listing = listings.get(uuid);
+        String brand = listing.getBrand();
+        String name = listing.getName();
         listings.remove(uuid);
         this.save();
+        return String.format("%s %s", brand, name);
     }
 
     private void save(){

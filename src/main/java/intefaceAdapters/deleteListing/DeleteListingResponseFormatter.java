@@ -20,11 +20,6 @@ public class DeleteListingResponseFormatter implements DeleteListingPresenter {
     }
 
     @Override
-    public void sendFailureMessage(String message) {
-        view.showFailerMessage(message);
-    }
-
-    @Override
     public void deletedListingMessage(String message) {
         view.showDeletedMessage(message);
     }
