@@ -24,6 +24,7 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
 
         createListing.addActionListener(this);
         browseListings.addActionListener(this);
+        removeListings.addActionListener(this);
 
         main = new JPanel();
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
@@ -47,6 +48,9 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
             this.setContentPane(main);
             this.pack();
         };
+        if (e.getActionCommand().equals("Remove Listings")){
+            setDeleteListingScreen();
+        }
         if (e.getActionCommand().equals("Exit")) {
             this.setContentPane(main);
             this.pack();
@@ -64,6 +68,18 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
         DisplayListingScreen displayListingScreen = new DisplayListingScreen();
         this.setContentPane(displayListingScreen);
         displayListingScreen.exitDisplayButton().addActionListener(this);
+        this.pack();
+    }
+
+    private void setDeleteListingScreen() {
+        DeleteListingsScreen deleteListingScreen = new DeleteListingsScreen(this);
+        this.setContentPane(deleteListingScreen);
+        deleteListingScreen.getBackButton().addActionListener(this);
+        this.pack();
+    }
+
+    public void comeBackScreen() {
+        this.setContentPane(main);
         this.pack();
     }
 }
