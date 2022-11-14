@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class CreateListingInteractor implements CreateListingInputBoundary{
-    private CreateListingDsGateway gateway;
-    private CreateListingPresenter presenter;
-    private ListingFactory listingFactory;
+    private final CreateListingDsGateway gateway;
+    private final CreateListingPresenter presenter;
+    private final ListingFactory listingFactory;
 
     public CreateListingInteractor(CreateListingPresenter presenter, ListingFactory listingFactory) {
         this.presenter = presenter;
@@ -38,8 +38,8 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
         String description = requestModel.getDescription();
         LocalDateTime now = LocalDateTime.now();
         String type = requestModel.getType();
-        int yearNum = 2022;
-        float priceNum = 0.0F;
+        int yearNum;
+        float priceNum;
 
         if (brand.equals("") || name.equals("") || color.equals("") || description.equals("")) {
             presenter.prepareFailView("Please fill in all the fields for the listing.");
