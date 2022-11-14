@@ -34,6 +34,14 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
     private final DisplayListingController displayListingController;
 
     public DisplayListingScreen() {
+        renderContent();
+        back = createBackButton();
+
+        DisplayListingPresenter displayListingPresenter = new DisplayListingResponseFormatter(this);
+        displayListingController = new DisplayListingController(displayListingPresenter);
+    }
+
+    private void renderContent() {
         JLabel title = new JLabel("Filter for Available Listings");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -75,10 +83,6 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
         this.add(numSeatsInfo);
         this.add(typeInfo);
         this.add(buttons);
-        back = createBackButton();
-
-        DisplayListingPresenter displayListingPresenter = new DisplayListingResponseFormatter(this);
-        displayListingController = new DisplayListingController(displayListingPresenter);
     }
 
     @Override

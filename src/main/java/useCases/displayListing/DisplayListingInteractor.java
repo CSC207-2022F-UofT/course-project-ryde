@@ -24,6 +24,19 @@ public class DisplayListingInteractor implements DisplayListingInputBoundary{
     @Override
     public void displayListings(DisplayListingRequestModel displayListingRequestModel) {
         List<DisplayListingDsRequestModel> listings = gateway.getListings();
+        List<DisplayListingDsRequestModel> outputListings = getFilteredListings(displayListingRequestModel, listings);
+
+        if (outputListings.size() == 0 ) {
+            presenter.sendFailureMessage("No Listings found!");
+        } else {
+            DisplayListingResponseModel responseModel =
+                    new DisplayListingResponseModel("Listing(s) found!", outputListings);
+            presenter.displayFilteredListings(responseModel);
+        }
+
+    }
+
+    private static List<DisplayListingDsRequestModel> getFilteredListings(DisplayListingRequestModel displayListingRequestModel, List<DisplayListingDsRequestModel> listings) {
         String brand = displayListingRequestModel.getBrand();
         String name = displayListingRequestModel.getName();
         String color  = displayListingRequestModel.getColor();
@@ -84,15 +97,7 @@ public class DisplayListingInteractor implements DisplayListingInputBoundary{
                  outputListings.add(listing);
              }
         }
-
-        if (outputListings.size() == 0 ) {
-            presenter.sendFailureMessage("No Listings found!");
-        } else {
-            DisplayListingResponseModel responseModel =
-                    new DisplayListingResponseModel("Listing(s) found!", outputListings);
-            presenter.displayFilteredListings(responseModel);
-        }
-
+        return outputListings;
     }
 
 }
