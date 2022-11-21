@@ -68,13 +68,6 @@ public class DeleteListingsScreen extends JPanel implements DeleteListingScreenI
     }
 
     @Override
-    public void showFailerMessage(String message) {
-        DeletedPopUp back = new DeletedPopUp(message);
-        back.setVisible(true);
-        back.getContButton().addActionListener(this);
-    }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
         parent.comeBackScreen();
     }

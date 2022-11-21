@@ -1,6 +1,5 @@
 package intefaceAdapters.createListing;
 
-import screens.WelcomeScreen;
 import useCases.createListing.CreateListingPresenter;
 import useCases.createListing.CreateListingResponseModel;
 

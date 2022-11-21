@@ -2,7 +2,6 @@ package screens;
 
 import intefaceAdapters.deleteListing.DeleteListingController;
 import useCases.deleteListing.DeleteListingDsRequestModel;
-import useCases.deleteListing.DeleteListingRequestModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;

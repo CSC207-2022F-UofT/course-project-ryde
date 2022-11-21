@@ -3,8 +3,8 @@ package useCases.displayListing;
 import java.util.List;
 
 public class DisplayListingResponseModel {
-    private String message;
-    private List<DisplayListingDsRequestModel> filteredListings;
+    private final String message;
+    private final List<DisplayListingDsRequestModel> filteredListings;
 
     public DisplayListingResponseModel(String message, List<DisplayListingDsRequestModel> filteredListings) {
         this.message = message;

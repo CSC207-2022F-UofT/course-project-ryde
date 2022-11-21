@@ -16,15 +16,18 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
         JButton createListing = new JButton("Create Listing");
         JButton browseListings = new JButton("Browse Listings");
         JButton removeListings = new JButton("Remove Listings");
+        JButton logOut = new JButton("Log Out :(");
 
         buttons.add(createListing);
         buttons.add(browseListings);
         buttons.add(removeListings);
+        buttons.add(logOut);
         this.add(buttons);
 
         createListing.addActionListener(this);
         browseListings.addActionListener(this);
         removeListings.addActionListener(this);
+        logOut.addActionListener(this);
 
         main = new JPanel();
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
@@ -54,6 +57,11 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
         if (e.getActionCommand().equals("Exit")) {
             this.setContentPane(main);
             this.pack();
+        }
+        if (e.getActionCommand().equals("Log Out :(")) {
+            JOptionPane.showMessageDialog(this,
+                    "You have been logged out. Thank you for using Ryde!");
+            this.dispose();
         }
     }
 

@@ -1,6 +1,5 @@
 package screens;
 
-import entities.Listing;
 import intefaceAdapters.userLogin.UserLoginResponseFormatter;
 import intefaceAdapters.userLogin.UserLoginScreenInterface;
 import intefaceAdapters.userLogin.UserLoginController;

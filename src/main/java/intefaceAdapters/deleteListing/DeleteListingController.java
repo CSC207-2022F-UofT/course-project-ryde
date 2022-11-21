@@ -3,7 +3,6 @@ package intefaceAdapters.deleteListing;
 import useCases.deleteListing.DeleteListingInteractor;
 import useCases.deleteListing.DeleteListingPresenter;
 import useCases.deleteListing.DeleteListingRequestModel;
-import useCases.deleteListing.DeleteListingResponseModel;
 
 public class DeleteListingController {
     private final DeleteListingInteractor interactor;

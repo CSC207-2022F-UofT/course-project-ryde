@@ -1,6 +1,5 @@
 package intefaceAdapters.userLogin;
 
-import screens.UserLoginScreen;
 import useCases.userLogin.UserLoginPresenter;
 import useCases.userLogin.UserLoginResponseModel;
 

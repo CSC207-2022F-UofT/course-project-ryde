@@ -1,7 +1,6 @@
 package intefaceAdapters.displayListing;
 
 import useCases.displayListing.DisplayListingDsRequestModel;
-import useCases.displayListing.DisplayListingResponseModel;
 
 import java.util.List;
 
