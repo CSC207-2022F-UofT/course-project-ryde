@@ -1,5 +1,5 @@
 name: Java CI
-
+# this runs all tests that we have made.
 on:
   push:
     branches: [ "main" ]
