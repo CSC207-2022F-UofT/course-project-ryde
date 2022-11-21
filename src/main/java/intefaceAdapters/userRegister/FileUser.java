@@ -81,7 +81,13 @@ public class FileUser implements UserRegisterDsGateway {
             writer.newLine();
 
             for (UserRegisterDsRequestModel user : accounts.values()) {
-                String line = String.format("%s,%s,%s,%s,%s,%s", user.getEmail(), user.getPassword(), user.getName(), user.getCreationTime(), user.getListings(), user.getLocation());
+                String line = String.format("%s,%s,%s,%s,%s,%s",
+                        user.getEmail(),
+                        user.getPassword(),
+                        user.getName(),
+                        user.getCreationTime(),
+                        user.getListings(),
+                        user.getLocation());
                 writer.write(line);
                 writer.newLine();
             }
@@ -93,6 +99,10 @@ public class FileUser implements UserRegisterDsGateway {
         }
     }
 
+    /**
+     * @param identifier email that the user has input
+     * @return whether a user with the same email already exists in the database
+     */
     @Override
     public boolean existsByEmail(String identifier) {
         return accounts.containsKey(identifier);

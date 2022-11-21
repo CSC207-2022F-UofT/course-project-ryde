@@ -1,5 +1,8 @@
 package useCases.userRegister;
 
+/**
+ * A response model that stores the user's name and the creation time
+ */
 public class UserRegisterResponseModel {
     String login;
     String creationTime;
@@ -9,13 +12,12 @@ public class UserRegisterResponseModel {
         this.creationTime = creationTime;
     }
 
+    /**
+     * @return name of the user
+     */
     public String getLogin() {
         return login;
     }
-
-//    public void setLogin(String login) {
-//        this.login = login;
-//    }
 
     public String getCreationTime() {
         return creationTime;

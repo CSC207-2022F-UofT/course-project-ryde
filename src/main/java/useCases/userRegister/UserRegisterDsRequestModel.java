@@ -2,6 +2,10 @@ package useCases.userRegister;
 
 import java.time.LocalDateTime;
 
+/**
+ * A model that stores the name, email, password, creationTime, listings and location of the user.
+ * This is to store the data of a line in the users.csv file.
+ */
 public class UserRegisterDsRequestModel {
 
     private final String name;
