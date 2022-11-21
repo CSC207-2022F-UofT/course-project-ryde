@@ -1,5 +1,9 @@
 package useCases.userRegister;
 
+/**
+ * This model stores the email, password, name, repeatedPassword of the User.
+ * If the User is a Dealership user then it also stores location, which is otherwise null.
+ */
 public class UserRegisterRequestModel {
     private final String email;
     private final String password;
@@ -28,39 +32,19 @@ public class UserRegisterRequestModel {
         return name;
     }
 
-//    void setName(String name) {
-//        this.name = name;
-//    }
-
     String getPassword() {
         return password;
     }
-
-//    void setPassword(String password) {
-//        this.password = password;
-//    }
 
     String getEmail() {
         return email;
     }
 
-//    void setEmail(String email) {
-//        this.email = email;
-//    }
-
     public String getRepeatPassword() {
         return repeatPassword;
     }
 
-//    public void setRepeatPassword(String repeatPassword) {
-//        this.repeatPassword = repeatPassword;
-//    }
-
     public String getLocation() {
         return location;
     }
-
-//    public void setLocation(String location) {
-//        this.location = location;
-//    }
 }
