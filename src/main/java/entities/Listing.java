@@ -6,9 +6,6 @@ import java.util.Objects;
  * Represents a listing which is an ad for a car that a user may upload to sell on the application
  */
 public class Listing {
-    public String getUniqueId() {
-        return uniqueId;
-    }
 
     public String getBrand() {
         return brand;
@@ -34,14 +31,6 @@ public class Listing {
         return price;
     }
 
-    public LocalDateTime getDateCreated() {
-        return dateCreated;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -54,20 +43,19 @@ public class Listing {
         return type;
     }
 
-    private String uniqueId;
-    private String brand;
+    private final String uniqueId;
 
-    private String name;
-    private String color;
-    private int year;
-    private int numSeats;
-    private float price;
-    private LocalDateTime dateCreated;
+    private final String brand;
 
-    private String userEmail;
-    private String phoneNumber;
-    private String description;
-    private String type;
+    private final String name;
+    private final String color;
+    private final int year;
+    private final int numSeats;
+    private final float price;
+
+    private final String phoneNumber;
+    private final String description;
+    private final String type;
 
     public Listing(String uniqueId, String brand, String name, String color, int year, int numSeats, float price, LocalDateTime dateCreated, String userEmail, String phoneNumber, String description, String type) {
         this.uniqueId = uniqueId;
@@ -77,8 +65,6 @@ public class Listing {
         this.year = year;
         this.numSeats = numSeats;
         this.price = price;
-        this.dateCreated = dateCreated;
-        this.userEmail = userEmail;
         this.phoneNumber = phoneNumber;
         this.description = description;
         this.type = type;

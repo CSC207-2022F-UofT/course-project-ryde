@@ -5,10 +5,8 @@ import intefaceAdapters.displayListing.DisplayListingResponseFormatter;
 import intefaceAdapters.displayListing.DisplayListingScreenInterface;
 import useCases.displayListing.DisplayListingDsRequestModel;
 import useCases.displayListing.DisplayListingPresenter;
-import useCases.displayListing.DisplayListingResponseModel;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

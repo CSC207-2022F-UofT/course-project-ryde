@@ -1,24 +1,13 @@
 package screens;
 
-import entities.UserFactory;
-import intefaceAdapters.userRegister.FileUser;
-import intefaceAdapters.userRegister.UserRegisterController;
-import intefaceAdapters.userRegister.UserRegisterResponseFormatter;
-import useCases.userRegister.UserRegisterDsGateway;
-import useCases.userRegister.UserRegisterInputBoundary;
-import useCases.userRegister.UserRegisterInteractor;
-import useCases.userRegister.UserRegisterPresenter;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
-import java.util.List;
 
 // Frameworks/Drivers layer
 
 public class WelcomeScreen extends JFrame implements ActionListener {
-    private JPanel main;
+    private final JPanel main;
 
     /**
      * A window with a title and a JButton.

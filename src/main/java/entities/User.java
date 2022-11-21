@@ -46,8 +46,4 @@ public abstract class User {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-
-    public void addListing(Integer listing) {
-        listings.add(listing);
-    }
 }

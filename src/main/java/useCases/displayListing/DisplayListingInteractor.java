@@ -1,7 +1,6 @@
 package useCases.displayListing;
 
 import intefaceAdapters.displayListing.DisplayListingRepo;
-import intefaceAdapters.displayListing.DisplayListingResponseFormatter;
 
 import java.io.IOException;
 import java.util.ArrayList;
