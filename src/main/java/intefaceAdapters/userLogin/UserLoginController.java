@@ -1,9 +1,6 @@
 package intefaceAdapters.userLogin;
 
-import useCases.userLogin.UserLoginInputBoundary;
-import useCases.userLogin.UserLoginInteractor;
-import useCases.userLogin.UserLoginPresenter;
-import useCases.userLogin.UserLoginRequestModel;
+import useCases.userLogin.*;
 
 public class UserLoginController {
     private final UserLoginInputBoundary userInput;
@@ -11,8 +8,8 @@ public class UserLoginController {
     /**
      * @param presenter the presenter tha communicates the view to tell it what to dispaly.
      */
-    public UserLoginController(UserLoginPresenter presenter) {
-        this.userInput = new UserLoginInteractor(presenter);
+    public UserLoginController(UserLoginPresenter presenter, UserLoginDsGateway gateway) {
+        this.userInput = new UserLoginInteractor(presenter, gateway);
     }
 
     /**

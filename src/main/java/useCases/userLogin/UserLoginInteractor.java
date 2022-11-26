@@ -12,12 +12,8 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     /**
      * @param userLoginPresenter The output port that tells the view what to present
      */
-    public UserLoginInteractor(UserLoginPresenter userLoginPresenter) {
-        try {
-            userLoginDsGateway = new FindUser("./users.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("Could not find file");
-        }
+    public UserLoginInteractor(UserLoginPresenter userLoginPresenter, UserLoginDsGateway gateway) {
+        userLoginDsGateway = gateway;
         this.userLoginPresenter = userLoginPresenter;
     }
 

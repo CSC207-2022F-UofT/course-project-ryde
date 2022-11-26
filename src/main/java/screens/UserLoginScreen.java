@@ -3,7 +3,9 @@ package screens;
 import intefaceAdapters.userLogin.UserLoginResponseFormatter;
 import intefaceAdapters.userLogin.UserLoginScreenInterface;
 import intefaceAdapters.userLogin.UserLoginController;
+import useCases.userLogin.UserLoginDsGateway;
 import useCases.userLogin.UserLoginPresenter;
+import useCases.userRegister.UserRegisterDsGateway;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,10 +22,11 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
     public final JButton continueToListings;
     public final JButton exitLogin;
     private final UserLoginController controller;
+
     /**
      * Builds the gui for the user login screen
      */
-    public UserLoginScreen() {
+    public UserLoginScreen(UserLoginDsGateway gateway) {
 
         title = new JLabel("Login");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -53,7 +56,7 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
         this.add(exitLoginButton);
 
         UserLoginPresenter presenter = new UserLoginResponseFormatter(this);
-        controller = new UserLoginController(presenter);
+        controller = new UserLoginController(presenter, gateway);
 
     }
 
