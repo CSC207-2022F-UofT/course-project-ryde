@@ -1,7 +1,6 @@
 package useCases.userLogin;
 
 import entities.LoggedInUserSingleton;
-import entities.User;
 import intefaceAdapters.userLogin.FindUser;
 import intefaceAdapters.userLogin.UserLoginController;
 import intefaceAdapters.userLogin.UserLoginResponseFormatter;
@@ -18,8 +17,6 @@ class UserLoginInteractorTest {
     private final String SUCCESS_TEST_EMAIL = "manav@gmail.com";
     private final String SUCCESS_TEST_PASSWORD = "password";
 
-    private final String FAIL_TEST_EMAIL = "fail@gmail.com";
-    private final String FAIL_TEST_PASSWORD = "fake_password";
     class MockUserLoginScreen implements UserLoginScreenInterface {
         String message;
 
@@ -35,19 +32,18 @@ class UserLoginInteractorTest {
         public void showFailureLoginMessage(String errorMessage) {
             message = errorMessage;
         }    }
-    private MockUserLoginScreen mockUserLoginScreen =  new MockUserLoginScreen();
-    private UserLoginDsGateway userLoginRepo;
-    private UserLoginPresenter userLoginResponseFormatter;
+    private final MockUserLoginScreen mockUserLoginScreen =  new MockUserLoginScreen();
     private UserLoginController userLoginController;
 
     @BeforeEach
     void setUp() {
+        UserLoginDsGateway userLoginRepo;
         try {
             userLoginRepo = new FindUser("./test_users.csv");
         } catch (IOException e) {
             throw new RuntimeException("Could not find file");
         }
-        userLoginResponseFormatter = new UserLoginResponseFormatter(mockUserLoginScreen);
+        UserLoginPresenter userLoginResponseFormatter = new UserLoginResponseFormatter(mockUserLoginScreen);
         // no need to initialize the userLoginInterface since the controller does that for us.
         userLoginController = new UserLoginController(userLoginResponseFormatter, userLoginRepo);
     }
@@ -73,6 +69,8 @@ class UserLoginInteractorTest {
 
     @Test
     void testLoginFailMessage(){
+        String FAIL_TEST_EMAIL = "fail@gmail.com";
+        String FAIL_TEST_PASSWORD = "fake_password";
         userLoginController.callUserLoginInteractor(FAIL_TEST_EMAIL, FAIL_TEST_PASSWORD);
         String expectedFailMessage = "Incorrect email or password";
         assertEquals(expectedFailMessage, mockUserLoginScreen.getMessage());
