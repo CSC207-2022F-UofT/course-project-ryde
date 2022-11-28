@@ -9,11 +9,18 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Class that implements the DeleteListingDsGateway and talks to the listings.csv file when listings need to be deleted
+ */
 public class DeleteListingRepo implements DeleteListingDsGateway {
     private final Map<String, DeleteListingDsRequestModel> listings = new HashMap<>();
     private final File csvFile;
     private final Map<String, Integer> headers;
 
+    /**
+     * @param csvPath It is the file where the details about each listing is stored
+     * @throws IOException Error if something goes wrong
+     */
     public DeleteListingRepo(String csvPath) throws IOException {
         csvFile = new File(csvPath);
         String[] headerList = {"uniqueId", "brand", "name", "color", "year", "numSeats", "price", "userEmail",
@@ -50,6 +57,10 @@ public class DeleteListingRepo implements DeleteListingDsGateway {
         }
     }
 
+    /**
+     * @param uuid Unique ID of the listing that is to be deleted
+     * @return the brand and model name of the listing
+     */
     @Override
     public String deleteListing(String uuid){
         DeleteListingDsRequestModel listing = listings.get(uuid);
@@ -80,6 +91,9 @@ public class DeleteListingRepo implements DeleteListingDsGateway {
         }
     }
 
+    /**
+     * @return Hashmap of the ID of the listing to the DsRequestModel
+     */
     @Override
     public Map<String, DeleteListingDsRequestModel> getListings() {
         return listings;

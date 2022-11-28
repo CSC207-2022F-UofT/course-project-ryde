@@ -2,50 +2,10 @@ package useCases.deleteListing;
 
 import java.time.LocalDateTime;
 
+/**
+ * the request model that stores a listing belonging to the user
+ */
 public class DeleteListingDsRequestModel {
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public String getNumSeats() {
-        return numSeats;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
 
     private final String uuid;
     private final String userEmail;
@@ -60,10 +20,9 @@ public class DeleteListingDsRequestModel {
     private final String type;
     private final LocalDateTime ldt;
 
-    public LocalDateTime getLdt() {
-        return ldt;
-    }
-
+    /**
+     * constructor for the DeleteListingDsRequestModel
+     */
     public DeleteListingDsRequestModel(String uuid, String userEmail, String brand, String name, String color, String year, String numSeats, String price, String phoneNumber, String description, String type, LocalDateTime ldt) {
         this.uuid = uuid;
         this.userEmail = userEmail;
@@ -77,5 +36,88 @@ public class DeleteListingDsRequestModel {
         this.description = description;
         this.type = type;
         this.ldt = ldt;
+    }
+    /**
+     * @return Brand of the vehicle in the listing
+     */
+    public String getBrand() {
+        return brand;
+    }
+
+    /**
+     * @return Name of the vehicle in the listing
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return Color of the vehicle in the listing
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @return Year that the vehicle was manufactured in
+     */
+    public String getYear() {
+        return year;
+    }
+
+    /**
+     * @return Number of seats of the vehicle in the listing
+     */
+    public String getNumSeats() {
+        return numSeats;
+    }
+
+    /**
+     * @return Price of the vehicle in the listing
+     */
+    public String getPrice() {
+        return price;
+    }
+
+    /**
+     * @return Phone number of the user whose listing it is
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * @return Description of the vehicle in the listing
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @return Type of the listing
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @return Unique ID of the listing
+     */
+    public String getUuid() {
+        return uuid;
+    }
+
+    /**
+     * @return The email of the user whose listing it is
+     */
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    /**
+     * @return Local date time when the listing was created
+     */
+    public LocalDateTime getLdt() {
+        return ldt;
     }
 }

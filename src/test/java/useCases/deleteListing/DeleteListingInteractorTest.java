@@ -16,6 +16,9 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests the entire delete listing use case
+ */
 class DeleteListingInteractorTest {
     DeleteListingDsGateway gateway;
     DeleteListingPresenter presenter;
@@ -58,6 +61,9 @@ class DeleteListingInteractorTest {
 
     }
 
+    /**
+     * Tests whether the user's listings are displayed successfully
+     */
     @Test
     void displayListingsSuccess() {
         controller.displayUserListings();
@@ -73,6 +79,9 @@ class DeleteListingInteractorTest {
         assertEquals(model3.getUserEmail(), "manav@gmail.com");
     }
 
+    /**
+     * Tests whether a listing can successfully be deleted.
+     */
     @Test
     void testDeleteListingSuccess() {
         controller.deleteUserListing("3");
