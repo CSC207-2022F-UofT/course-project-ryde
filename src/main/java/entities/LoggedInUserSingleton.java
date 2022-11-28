@@ -10,6 +10,9 @@ public class LoggedInUserSingleton {
         this.email = email;
     }
 
+    /**
+     * @return the loggedInUser if  the class has been initialized, otherwise throw an AssertionError.
+     */
     public static LoggedInUserSingleton getInstance()
     {
         if (loggedInUser == null) {
@@ -18,6 +21,10 @@ public class LoggedInUserSingleton {
         return loggedInUser;
     }
 
+    /**
+     * initialize the loggedInUser instance variable by calling the private constructor.
+     * @param email the email of the user.
+     */
     public static void init (String email) {
        if (loggedInUser != null)  {
            return;
@@ -25,6 +32,19 @@ public class LoggedInUserSingleton {
        loggedInUser = new LoggedInUserSingleton(email);
     }
 
+    /**
+     * reset the instance variables for testing purposes.
+     */
+
+    public static void reset() {
+        new LoggedInUserSingleton("");
+        loggedInUser = null;
+    }
+
+    /**
+     *
+     * @return email instance variable
+     */
     public String getEmail() {
        return email;
     }

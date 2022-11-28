@@ -1,9 +1,6 @@
 package useCases.userLogin;
 
 import entities.LoggedInUserSingleton;
-import intefaceAdapters.userLogin.FindUser;
-
-import java.io.IOException;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
     private final UserLoginDsGateway userLoginDsGateway;
@@ -12,12 +9,8 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     /**
      * @param userLoginPresenter The output port that tells the view what to present
      */
-    public UserLoginInteractor(UserLoginPresenter userLoginPresenter) {
-        try {
-            userLoginDsGateway = new FindUser("./users.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("Could not find file");
-        }
+    public UserLoginInteractor(UserLoginPresenter userLoginPresenter, UserLoginDsGateway gateway) {
+        userLoginDsGateway = gateway;
         this.userLoginPresenter = userLoginPresenter;
     }
 
@@ -35,7 +28,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         String userEmail = requestModel.getEmail();
         String userPassword = requestModel.getPassword();
         if (userLoginDsGateway.validLogin(userEmail, userPassword)) {
-            UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde!", userEmail);
+            UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde!");
             LoggedInUserSingleton.init(userEmail);
             userLoginPresenter.loginSuccess(userLoginResponseModel);
         } else {
