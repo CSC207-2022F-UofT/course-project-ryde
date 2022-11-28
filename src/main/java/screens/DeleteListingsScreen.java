@@ -1,8 +1,10 @@
 package screens;
 
 import intefaceAdapters.deleteListing.DeleteListingController;
+import intefaceAdapters.deleteListing.DeleteListingRepo;
 import intefaceAdapters.deleteListing.DeleteListingResponseFormatter;
 import intefaceAdapters.deleteListing.DeleteListingScreenInterface;
+import useCases.deleteListing.DeleteListingDsGateway;
 import useCases.deleteListing.DeleteListingDsRequestModel;
 import useCases.deleteListing.DeleteListingPresenter;
 
@@ -10,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.List;
 
 public class DeleteListingsScreen extends JPanel implements DeleteListingScreenInterface, ActionListener {
@@ -31,8 +34,14 @@ public class DeleteListingsScreen extends JPanel implements DeleteListingScreenI
 
         contentPanel = new JPanel();
 
+        DeleteListingDsGateway gateway;
+        try{
+            gateway = new DeleteListingRepo("./listings.csv");
+        } catch (IOException e) {
+            throw new RuntimeException("Could not find file");
+        }
         DeleteListingPresenter presenter = new DeleteListingResponseFormatter(this);
-        this.controller = new DeleteListingController(presenter);
+        this.controller = new DeleteListingController(presenter, gateway);
         controller.displayUserListings();
         exit = new JButton("Go Back");
         this.add(exit);
