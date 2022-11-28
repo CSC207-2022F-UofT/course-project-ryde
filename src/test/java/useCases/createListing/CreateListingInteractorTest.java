@@ -14,6 +14,9 @@ import javax.xml.namespace.QName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * tests the create listing use case
+ */
 class CreateListingInteractorTest {
     MockListingRepo gateway;
     CreateListingPresenter presenter;
@@ -46,6 +49,9 @@ class CreateListingInteractorTest {
     void tearDown() {
     }
 
+    /**
+     * tests whether a listing with the right inputs can successfully be created
+     */
     @Test
     void testCreateSuccess() {
         String brand = "Ford";
@@ -62,6 +68,9 @@ class CreateListingInteractorTest {
         assertEquals(status, "F150 listing created!");
     }
 
+    /**
+     * tests whether a failure message is displayed when a field is empty
+     */
     @Test
     void testBlankFieldFail() {
         String brand = "";
@@ -79,6 +88,9 @@ class CreateListingInteractorTest {
         assertFalse(gateway.exists(model));
     }
 
+    /**
+     * tests whether a failure message is displayed when the inpur in the year field is invalid
+     */
     @Test
     void testInvalidYearFail() {
         String brand = "Ford";
@@ -96,6 +108,9 @@ class CreateListingInteractorTest {
         assertFalse(gateway.exists(model));
     }
 
+    /**
+     * tests whether a failure message is displayed when the input in the price field is invalid
+     */
     @Test
     void testInvalidPriceFail() {
         String brand = "Ford";
@@ -113,6 +128,9 @@ class CreateListingInteractorTest {
         assertFalse(gateway.exists(model));
     }
 
+    /**
+     * tests whether a failure message is displayed when the input in the number field is invalid
+     */
     @Test
     void testInvalidNumberFail() {
         String brand = "Ford";
@@ -130,6 +148,9 @@ class CreateListingInteractorTest {
         assertFalse(gateway.exists(model));
     }
 
+    /**
+     * tests whether a failure message is displayed when the input in the type field is invalid
+     */
     @Test
     void testInvalidTypeFail() {
         String brand = "Ford";

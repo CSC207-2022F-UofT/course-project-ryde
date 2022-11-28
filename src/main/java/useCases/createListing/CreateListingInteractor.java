@@ -9,17 +9,29 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * this is the CreateListingUseCase
+ */
 public class CreateListingInteractor implements CreateListingInputBoundary{
     private final CreateListingDsGateway gateway;
     private final CreateListingPresenter presenter;
     private final ListingFactory listingFactory;
 
+    /**
+     * @param presenter presenter object
+     * @param listingFactory factory for the listings
+     * @param gateway gateway to talk to the database
+     */
     public CreateListingInteractor(CreateListingPresenter presenter, ListingFactory listingFactory, CreateListingDsGateway gateway) {
         this.presenter = presenter;
         this.gateway = gateway;
         this.listingFactory = listingFactory;
     }
 
+    /**
+     * @param requestModel listing input that the user wants to create.
+     *                     creates the listing or shows an error message based on the inpur by the user
+     */
     @Override
     public void create(CreateListingRequestModel requestModel) {
         String uniqueId = UUID.randomUUID().toString();
@@ -65,6 +77,10 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
         }
     }
 
+    /**
+     * @param str string object
+     * @return whether the string contains only numbers
+     */
     private boolean isNotNumericInt(String str) {
         try {
             Integer.parseInt(str);
@@ -74,6 +90,10 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
         }
     }
 
+    /**
+     * @param str string object
+     * @return whether the string contains only float data
+     */
     private boolean isNumericFloat(String str) {
         try {
             Float.parseFloat(str);
@@ -83,6 +103,10 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
         }
     }
 
+    /**
+     * @param str string object
+     * @return whether the string contains only Long data
+     */
     private boolean isNumericLong(String str) {
         try {
             Long.parseLong(str);

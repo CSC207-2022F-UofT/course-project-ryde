@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Class to read listings and store them in database using hashmap
+ */
 public class ListingRepo implements CreateListingDsGateway {
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
@@ -19,6 +22,11 @@ public class ListingRepo implements CreateListingDsGateway {
         return listingsMap;
     }
 
+    /**
+     * @param csvPath the string containing the file path of the csv file which stores the listings
+     *                this reads the csv file and stores all the listings in listingsMap
+     * @throws IOException error is thrown when you cannot create the file for the listing
+     */
     public ListingRepo (String csvPath) throws IOException {
         csvFile = new File(csvPath);
 
@@ -59,12 +67,19 @@ public class ListingRepo implements CreateListingDsGateway {
         }
     }
 
+    /**
+     * Adds request model to storage
+     * @param createListingDsRequestModel the listing information to save
+     */
     @Override
     public void save(CreateListingDsRequestModel createListingDsRequestModel) {
         listingsMap.put(createListingDsRequestModel.getUniqueId(), createListingDsRequestModel);
         this.save();
     }
 
+    /**
+     * Rewrites the csv file but with the new listing created
+     */
     private void save() {
         BufferedWriter writer;
         try {

@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * tests the gateway for the create listing use case
+ */
 class ListingRepoTest {
     ListingRepo gateway;
 
@@ -42,6 +45,9 @@ class ListingRepoTest {
         resetCsv();
     }
 
+    /**
+     * tests whether a listing is successfully saved to the database
+     */
     @Test
     void save() {
         CreateListingDsRequestModel model = new CreateListingDsRequestModel("1", "Ford", "F150",
