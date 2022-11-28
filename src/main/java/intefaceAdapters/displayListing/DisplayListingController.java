@@ -1,15 +1,12 @@
 package intefaceAdapters.displayListing;
 
-import useCases.displayListing.DisplayListingInputBoundary;
-import useCases.displayListing.DisplayListingInteractor;
-import useCases.displayListing.DisplayListingPresenter;
-import useCases.displayListing.DisplayListingRequestModel;
+import useCases.displayListing.*;
 
 public class DisplayListingController {
     private final DisplayListingInputBoundary displayListingInteractor;
 
-    public DisplayListingController(DisplayListingPresenter displayListingPresenter) {
-        this.displayListingInteractor = new DisplayListingInteractor(displayListingPresenter);
+    public DisplayListingController(DisplayListingPresenter displayListingPresenter, DisplayListingDsGateway gateway) {
+        this.displayListingInteractor = new DisplayListingInteractor(displayListingPresenter, gateway);
     }
 
     public void callDisplayListingInteractor(String brand, String name, String color, String maxYear, String minYear, String numSeats, String maxPrice, String minPrice, String description, String type) {
