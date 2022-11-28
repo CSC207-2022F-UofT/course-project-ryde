@@ -5,6 +5,7 @@ import intefaceAdapters.userLogin.FindUser;
 import intefaceAdapters.userLogin.UserLoginController;
 import intefaceAdapters.userLogin.UserLoginResponseFormatter;
 import intefaceAdapters.userLogin.UserLoginScreenInterface;
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,23 +51,29 @@ class UserLoginInteractorTest {
 
     @AfterEach
     void tearDown() {
-
+        LoggedInUserSingleton.reset();
     }
-
+    /**
+     * Tests that we send the correct message to the user after a successful login
+     */
     @Test
     void testLoginSuccessMessage() {
         userLoginController.callUserLoginInteractor(SUCCESS_TEST_EMAIL, SUCCESS_TEST_PASSWORD);
         String expectedSuccessMessage = "Welcome back to Ryde!";
         assertEquals(expectedSuccessMessage, mockUserLoginScreen.getMessage());
     }
-
+    /**
+     * Tests that we set the current logged-in user is set after a successful login.
+     */
     @Test
     void checkUserLoggedIn() {
         userLoginController.callUserLoginInteractor(SUCCESS_TEST_EMAIL, SUCCESS_TEST_PASSWORD);
         String loggedInUserEmail = LoggedInUserSingleton.getInstance().getEmail();
         assertEquals(SUCCESS_TEST_EMAIL, loggedInUserEmail);
     }
-
+    /**
+     * Tests that we send the fail message to the user after an unsuccessful login.
+     */
     @Test
     void testLoginFailMessage(){
         String FAIL_TEST_EMAIL = "fail@gmail.com";
@@ -76,5 +83,24 @@ class UserLoginInteractorTest {
         assertEquals(expectedFailMessage, mockUserLoginScreen.getMessage());
     }
 
-
+    /**
+     * When a login is unsuccessful, check that we do not initialize the LoggedInUserSingleton
+     */
+    @Test
+    void testLoginFail() {
+        String FAIL_TEST_EMAIL = "fail@gmail.com";
+        String FAIL_TEST_PASSWORD = "fake_password";
+        userLoginController.callUserLoginInteractor(FAIL_TEST_EMAIL, FAIL_TEST_PASSWORD);
+        
+        AssertionError expectedAssertionError = Assert.assertThrows(AssertionError.class, () ->{
+                throw new AssertionError("init has not been called first.");
+        });
+        
+        try {
+            LoggedInUserSingleton.getInstance();
+        } catch (AssertionError e) {
+            String actualAssertionError = e.getMessage();
+            assertEquals(expectedAssertionError.getMessage(), actualAssertionError);
+        }
+    }
 }
