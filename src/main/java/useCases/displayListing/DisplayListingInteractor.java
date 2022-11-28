@@ -1,25 +1,29 @@
 package useCases.displayListing;
 
-import intefaceAdapters.displayListing.DisplayListingRepo;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This is DisplayListingUseCase.
+ */
 public class DisplayListingInteractor implements DisplayListingInputBoundary{
     private final DisplayListingDsGateway gateway;
     private final DisplayListingPresenter presenter;
 
-    public DisplayListingInteractor(DisplayListingPresenter presenter) {
+    /**
+     * @param presenter response formatter for the use case.
+     * @param gateway meant to be the DisplayListingRepo.
+     */
+    public DisplayListingInteractor(DisplayListingPresenter presenter, DisplayListingDsGateway gateway) {
         this.presenter = presenter;
-        try {
-            gateway = new DisplayListingRepo("./listings.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("Could not find file");
-        }
+        this.gateway = gateway;
     }
 
+    /**
+     * @param displayListingRequestModel stores the filter input by the user.
+     * tells the presenter to display listings if found else display the failure message.
+     */
     @Override
     public void displayListings(DisplayListingRequestModel displayListingRequestModel) {
         List<DisplayListingDsRequestModel> listings = gateway.getListings();
@@ -29,7 +33,7 @@ public class DisplayListingInteractor implements DisplayListingInputBoundary{
             presenter.sendFailureMessage("No Listings found!");
         } else {
             DisplayListingResponseModel responseModel =
-                    new DisplayListingResponseModel("Listing(s) found!", outputListings);
+                    new DisplayListingResponseModel(outputListings);
             presenter.displayFilteredListings(responseModel);
         }
 

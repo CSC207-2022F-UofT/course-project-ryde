@@ -1,8 +1,10 @@
 package screens;
 
 import intefaceAdapters.displayListing.DisplayListingController;
+import intefaceAdapters.displayListing.DisplayListingRepo;
 import intefaceAdapters.displayListing.DisplayListingResponseFormatter;
 import intefaceAdapters.displayListing.DisplayListingScreenInterface;
+import useCases.displayListing.DisplayListingDsGateway;
 import useCases.displayListing.DisplayListingDsRequestModel;
 import useCases.displayListing.DisplayListingPresenter;
 
@@ -10,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.List;
 
 public class DisplayListingScreen extends JPanel implements ActionListener, DisplayListingScreenInterface {
@@ -31,12 +34,18 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
 
     private final DisplayListingController displayListingController;
 
-    public DisplayListingScreen() {
+    public DisplayListingScreen(){
         renderContent();
         back = createBackButton();
 
         DisplayListingPresenter displayListingPresenter = new DisplayListingResponseFormatter(this);
-        displayListingController = new DisplayListingController(displayListingPresenter);
+        DisplayListingDsGateway gateway;
+        try {
+            gateway = new DisplayListingRepo("./listings.csv");
+        } catch (IOException e){
+            throw new RuntimeException("Could not find file");
+        }
+        displayListingController = new DisplayListingController(displayListingPresenter, gateway);
     }
 
     private void renderContent() {

@@ -1,0 +1,4 @@
+uniqueId,brand,name,color,year,numSeats,price,userEmail,phoneNumber,description,type,creationTime
+0,Ford,F150,Blue,2003,4,12000,test@gmail.com,6578388104,Amazing car. very spacious,Used,2022-11-13T18:21:28.448333
+1,Honda,Civic,Black,2014,4,16000,test@gmail.com,6578388104,This is a very good car.,Used,2022-11-13T18:21:28.448333
+2,Toyota,Corolla,White,2010,4,13000,test@gmail.com,6578388104,A very spacious and smooth car.,Used,2022-11-13T18:21:28.448333

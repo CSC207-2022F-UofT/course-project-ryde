@@ -2,19 +2,22 @@ package useCases.displayListing;
 
 import java.util.List;
 
+/**
+ * A response model that stores the filtered listings as per the filters inputted by the user.
+ */
 public class DisplayListingResponseModel {
-    private final String message;
     private final List<DisplayListingDsRequestModel> filteredListings;
 
-    public DisplayListingResponseModel(String message, List<DisplayListingDsRequestModel> filteredListings) {
-        this.message = message;
+    /**
+     * @param filteredListings filtered listings
+     */
+    public DisplayListingResponseModel(List<DisplayListingDsRequestModel> filteredListings) {
         this.filteredListings = filteredListings;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
+    /**
+     * @return filtered listings
+     */
     public List<DisplayListingDsRequestModel> getFilteredListings() {
         return filteredListings;
     }

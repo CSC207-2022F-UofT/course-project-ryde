@@ -9,9 +9,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class that implements the DisplayListingDsGateway and talks to the database when listings have to be displayed.
+ */
 public class DisplayListingRepo implements DisplayListingDsGateway {
     private final List<DisplayListingDsRequestModel> listings = new ArrayList<>();
 
+    /**
+     * @param csvPath The database
+     * @throws IOException error
+     * constructor for the gateway implementation
+     */
     public DisplayListingRepo(String csvPath) throws IOException {
         File csvFile = new File(csvPath);
         String[] headerList = {"uniqueId", "brand", "name", "color", "year", "numSeats", "price", "userEmail",
@@ -45,6 +53,9 @@ public class DisplayListingRepo implements DisplayListingDsGateway {
         }
     }
 
+    /**
+     * @return list of all the listings in the database
+     */
     @Override
     public List<DisplayListingDsRequestModel> getListings() {
         return listings;
