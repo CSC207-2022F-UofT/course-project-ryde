@@ -6,10 +6,6 @@ public class DeleteListingResponseModel {
     private final String message;
     private final List<DeleteListingDsRequestModel> requestModel;
 
-    public String getMessage() {
-        return message;
-    }
-
     public List<DeleteListingDsRequestModel> getRequestModel() {
         return requestModel;
     }

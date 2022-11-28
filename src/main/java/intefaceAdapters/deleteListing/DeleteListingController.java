@@ -1,5 +1,6 @@
 package intefaceAdapters.deleteListing;
 
+import useCases.deleteListing.DeleteListingDsGateway;
 import useCases.deleteListing.DeleteListingInteractor;
 import useCases.deleteListing.DeleteListingPresenter;
 import useCases.deleteListing.DeleteListingRequestModel;
@@ -7,8 +8,8 @@ import useCases.deleteListing.DeleteListingRequestModel;
 public class DeleteListingController {
     private final DeleteListingInteractor interactor;
 
-    public DeleteListingController(DeleteListingPresenter presenter) {
-        this.interactor = new DeleteListingInteractor(presenter);
+    public DeleteListingController(DeleteListingPresenter presenter, DeleteListingDsGateway gateway) {
+        this.interactor = new DeleteListingInteractor(presenter, gateway);
     }
 
     public void displayUserListings(){

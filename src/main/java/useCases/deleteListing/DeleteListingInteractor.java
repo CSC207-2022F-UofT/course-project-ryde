@@ -11,13 +11,9 @@ public class DeleteListingInteractor implements DeleteListingInputBoundary{
     private final DeleteListingDsGateway gateway;
     private final DeleteListingPresenter presenter;
 
-    public DeleteListingInteractor(DeleteListingPresenter presenter) {
+    public DeleteListingInteractor(DeleteListingPresenter presenter, DeleteListingDsGateway gateway) {
         this.presenter = presenter;
-        try {
-            gateway = new DeleteListingRepo("./listings.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("Could not find file");
-        }
+        this.gateway = gateway;
     }
 
     @Override
