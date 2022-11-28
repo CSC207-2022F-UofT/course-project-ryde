@@ -1,9 +1,6 @@
 package useCases.userLogin;
 
 import entities.LoggedInUserSingleton;
-import intefaceAdapters.userLogin.FindUser;
-
-import java.io.IOException;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
     private final UserLoginDsGateway userLoginDsGateway;
@@ -31,7 +28,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         String userEmail = requestModel.getEmail();
         String userPassword = requestModel.getPassword();
         if (userLoginDsGateway.validLogin(userEmail, userPassword)) {
-            UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde!", userEmail);
+            UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde!");
             LoggedInUserSingleton.init(userEmail);
             userLoginPresenter.loginSuccess(userLoginResponseModel);
         } else {
