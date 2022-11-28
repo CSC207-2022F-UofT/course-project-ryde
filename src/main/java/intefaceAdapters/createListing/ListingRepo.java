@@ -12,7 +12,12 @@ import java.util.Map;
 public class ListingRepo implements CreateListingDsGateway {
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
+
     private final Map<String, CreateListingDsRequestModel> listingsMap = new HashMap<>();
+
+    public Map<String, CreateListingDsRequestModel> getListingsMap() {
+        return listingsMap;
+    }
 
     public ListingRepo (String csvPath) throws IOException {
         csvFile = new File(csvPath);
@@ -69,10 +74,9 @@ public class ListingRepo implements CreateListingDsGateway {
 
             for (CreateListingDsRequestModel listing : listingsMap.values()) {
                 String line = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s", listing.getUniqueId(),
-                        listing.getBrand(), listing.getName(), listing.getColor(), listing.getYear(), listing.getNumSeats(),
-                        listing.getPrice(),
-                        listing.getUserEmail(), listing.getPhoneNumber(), listing.getDescription(), listing.getType(),
-                        listing.getCreationTime());
+                        listing.getBrand(), listing.getName(), listing.getColor(), listing.getYear(),
+                        listing.getNumSeats(), listing.getPrice(), listing.getUserEmail(), listing.getPhoneNumber(),
+                        "\"" + listing.getDescription() + "\"", listing.getType(), listing.getCreationTime());
                 writer.write(line);
                 writer.newLine();
             }

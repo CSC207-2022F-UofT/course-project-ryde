@@ -121,3 +121,4 @@ replay_pid*
 /gradle/
 /users.csv
 /listings.csv
+/test_listing_creation.csv

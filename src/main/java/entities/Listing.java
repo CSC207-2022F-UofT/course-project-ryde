@@ -7,42 +7,6 @@ import java.util.Objects;
  */
 public class Listing {
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getNumSeats() {
-        return numSeats;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getType() {
-        return type;
-    }
-
     private final String uniqueId;
 
     private final String brand;

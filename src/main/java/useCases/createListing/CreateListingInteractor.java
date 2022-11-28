@@ -14,13 +14,9 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
     private final CreateListingPresenter presenter;
     private final ListingFactory listingFactory;
 
-    public CreateListingInteractor(CreateListingPresenter presenter, ListingFactory listingFactory) {
+    public CreateListingInteractor(CreateListingPresenter presenter, ListingFactory listingFactory, CreateListingDsGateway gateway) {
         this.presenter = presenter;
-        try {
-            gateway = new ListingRepo("./listings.csv");
-        } catch (IOException e) {
-            throw new RuntimeException("Could not find file");
-        }
+        this.gateway = gateway;
         this.listingFactory = listingFactory;
     }
 

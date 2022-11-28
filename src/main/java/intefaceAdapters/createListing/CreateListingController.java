@@ -1,16 +1,13 @@
 package intefaceAdapters.createListing;
 
 import entities.ListingFactory;
-import useCases.createListing.CreateListingInputBoundary;
-import useCases.createListing.CreateListingInteractor;
-import useCases.createListing.CreateListingPresenter;
-import useCases.createListing.CreateListingRequestModel;
+import useCases.createListing.*;
 
 public class CreateListingController {
-    private CreateListingInputBoundary input;
+    private final CreateListingInputBoundary input;
 
-    public CreateListingController(CreateListingPresenter presenter, ListingFactory listingFactory) {
-        input = new CreateListingInteractor(presenter, listingFactory);
+    public CreateListingController(CreateListingPresenter presenter, ListingFactory listingFactory, CreateListingDsGateway gateway) {
+        input = new CreateListingInteractor(presenter, listingFactory, gateway);
     }
 
     public void executeInteractor(String brand, String name, String color, String year, int numSeats, String price, String phoneNumber, String description, String type) {
