@@ -4,12 +4,15 @@ import entities.ListingFactory;
 import intefaceAdapters.createListing.CreateListingController;
 import intefaceAdapters.createListing.CreateListingResponseFormatter;
 import intefaceAdapters.createListing.CreateListingScreenInterface;
+import intefaceAdapters.createListing.ListingRepo;
+import useCases.createListing.CreateListingDsGateway;
 import useCases.createListing.CreateListingPresenter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class CreateListingScreen extends JPanel implements ActionListener, CreateListingScreenInterface {
     private final JTextField brand = new JTextField(25);
@@ -33,7 +36,13 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
 
         CreateListingPresenter presenter = new CreateListingResponseFormatter(this);
         ListingFactory listingFactory = new ListingFactory();
-        controller = new CreateListingController(presenter, listingFactory);
+        CreateListingDsGateway gateway;
+        try {
+            gateway = new ListingRepo("./listings.csv");
+        } catch (IOException e) {
+            throw new RuntimeException("Could not find file");
+        }
+        controller = new CreateListingController(presenter, listingFactory, gateway);
     }
 
     private JButton createBackButton() {

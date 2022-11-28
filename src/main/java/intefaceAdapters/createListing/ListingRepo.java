@@ -9,11 +9,24 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Class to read listings and store them in database using hashmap
+ */
 public class ListingRepo implements CreateListingDsGateway {
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
+
     private final Map<String, CreateListingDsRequestModel> listingsMap = new HashMap<>();
 
+    public Map<String, CreateListingDsRequestModel> getListingsMap() {
+        return listingsMap;
+    }
+
+    /**
+     * @param csvPath the string containing the file path of the csv file which stores the listings
+     *                this reads the csv file and stores all the listings in listingsMap
+     * @throws IOException error is thrown when you cannot create the file for the listing
+     */
     public ListingRepo (String csvPath) throws IOException {
         csvFile = new File(csvPath);
 
@@ -54,12 +67,19 @@ public class ListingRepo implements CreateListingDsGateway {
         }
     }
 
+    /**
+     * Adds request model to storage
+     * @param createListingDsRequestModel the listing information to save
+     */
     @Override
     public void save(CreateListingDsRequestModel createListingDsRequestModel) {
         listingsMap.put(createListingDsRequestModel.getUniqueId(), createListingDsRequestModel);
         this.save();
     }
 
+    /**
+     * Rewrites the csv file but with the new listing created
+     */
     private void save() {
         BufferedWriter writer;
         try {
@@ -69,10 +89,9 @@ public class ListingRepo implements CreateListingDsGateway {
 
             for (CreateListingDsRequestModel listing : listingsMap.values()) {
                 String line = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s", listing.getUniqueId(),
-                        listing.getBrand(), listing.getName(), listing.getColor(), listing.getYear(), listing.getNumSeats(),
-                        listing.getPrice(),
-                        listing.getUserEmail(), listing.getPhoneNumber(), listing.getDescription(), listing.getType(),
-                        listing.getCreationTime());
+                        listing.getBrand(), listing.getName(), listing.getColor(), listing.getYear(),
+                        listing.getNumSeats(), listing.getPrice(), listing.getUserEmail(), listing.getPhoneNumber(),
+                        "\"" + listing.getDescription() + "\"", listing.getType(), listing.getCreationTime());
                 writer.write(line);
                 writer.newLine();
             }
