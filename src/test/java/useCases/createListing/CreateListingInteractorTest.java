@@ -38,7 +38,7 @@ class CreateListingInteractorTest {
 
     @BeforeEach
     void setUp() {
-        LoggedInUserSingleton.init("manav@gmail.com");
+        LoggedInUserSingleton.init("manav@gmail.com", false);
         gateway = new MockListingRepo();
         presenter = new CreateListingResponseFormatter(view);
         factory = new ListingFactory();

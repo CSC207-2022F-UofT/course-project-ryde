@@ -1,5 +1,6 @@
 package useCases.nearestDealership;
 
+import entities.LoggedInUserSingleton;
 import intefaceAdapters.nearestDealership.NearestDealershipApiGateway;
 
 import java.util.List;
@@ -29,6 +30,11 @@ public class NearestDealershipInteractor implements NearestDealershipInputBounda
             presenter.sendFailureMessage("No Dealerships around!");
             return;
         }
+
+        if (LoggedInUserSingleton.getInstance().getIsDealership()) {
+            presenter.sendFailureMessage("Only individual users can find closest dealerships");
+            return;
+        }
         NearestDealershipResponseModel output = apiGateway.getClosestDealership(dealerships, requestModel.getUserLocation());
         presenter.displayNearestDealership(output);
     }
@@ -38,4 +44,5 @@ public class NearestDealershipInteractor implements NearestDealershipInputBounda
         Matcher matcher = zipCode.matcher(code);
         return matcher.find();
     }
+
 }

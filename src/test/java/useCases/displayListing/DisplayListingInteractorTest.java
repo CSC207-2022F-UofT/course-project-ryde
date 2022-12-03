@@ -36,7 +36,7 @@ class DisplayListingInteractorTest {
 
     @BeforeEach
     void setUp() {
-        LoggedInUserSingleton.init("manav@gmail.com");
+        LoggedInUserSingleton.init("manav@gmail.com", false);
         try {
             gateway = new DisplayListingRepo("./test_listings.csv");
         } catch (IOException e) {

@@ -7,4 +7,9 @@ public interface UserLoginDsGateway {
       * @return Whether the password and email was found in the database of users
       */
      boolean validLogin(String email, String password);
+     /**
+      * @param email    Email that the user has entered
+      * @return Whether the user is a dealership type of user or not.
+      */
+     boolean isDealership(String email);
 }
