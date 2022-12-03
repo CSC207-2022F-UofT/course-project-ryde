@@ -7,6 +7,9 @@ public class NearestDealershipRequestModel {
         this.userLocation = location;
     }
 
+    /**
+     * @return location of the user
+     */
     public String getUserLocation() {
         return userLocation;
     }

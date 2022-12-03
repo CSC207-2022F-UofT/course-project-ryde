@@ -11,10 +11,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class responsible to interact with the users database and access the dealerships
+ */
 public class DealershipRepo implements NearestDealershipDsGateway {
 
     private final List<DealershipDsRequestModel> dealerships = new ArrayList<>();
 
+    /**
+     * @param csvPath file containing the user data
+     */
     public DealershipRepo(String csvPath) throws IOException{
         File csvFile = new File(csvPath);
         if (csvFile.length() > 0) {
@@ -27,7 +33,7 @@ public class DealershipRepo implements NearestDealershipDsGateway {
                 String name = String.valueOf(col[2]);
                 String location = String.valueOf(col[5]);
                 DealershipDsRequestModel dealership = new DealershipDsRequestModel(name, location);
-                if (!location.equals("")){
+                if (!location.equals("null")){
                     dealerships.add(dealership);
                 }
             }
@@ -36,6 +42,9 @@ public class DealershipRepo implements NearestDealershipDsGateway {
         }
     }
 
+    /**
+     * @return all the dealerships in the database
+     */
     @Override
     public List<DealershipDsRequestModel> getDealerships() {
         return dealerships;

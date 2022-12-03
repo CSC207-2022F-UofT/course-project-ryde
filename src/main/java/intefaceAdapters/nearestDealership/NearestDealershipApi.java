@@ -15,8 +15,20 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
+/**
+ * Class for the API. Uses the Google Distance Matrix API. Please note this only works with the right API key
+ * which has NOT been pushed
+ */
 public class NearestDealershipApi implements NearestDealershipApiGateway {
+//    Enter the right API key here
     private static final String API_KEY = "";
+
+    /**
+     * @param dealerships  list of dealerships in the database
+     * @param userLocation postal code that the user has input
+     * @return a response model containing the name and location of the nearest dealership, along with
+     * how far it is and how long it will take to get there from userLocation
+     */
     @Override
     public NearestDealershipResponseModel getClosestDealership(List<DealershipDsRequestModel> dealerships, String userLocation) {
         DealershipDsRequestModel closest = dealerships.get(0);

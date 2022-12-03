@@ -13,12 +13,15 @@ public class NearestDealershipInteractor implements NearestDealershipInputBounda
 
     private final NearestDealershipApiGateway apiGateway;
 
-    public NearestDealershipInteractor(NearestDealershipPresenter presenter, NearestDealershipDsGateway dealershipDsGateway) {
+    public NearestDealershipInteractor(NearestDealershipPresenter presenter, NearestDealershipDsGateway dealershipDsGateway, NearestDealershipApiGateway apiGateway) {
         this.presenter = presenter;
         this.dealershipDsGateway = dealershipDsGateway;
-        this.apiGateway = new NearestDealershipApi();
+        this.apiGateway = apiGateway;
     }
 
+    /**
+     * @param requestModel holds the user's location
+     */
     @Override
     public void getNearestDealership(NearestDealershipRequestModel requestModel) {
         if (!isValidLocation(requestModel.getUserLocation())){
@@ -30,17 +33,12 @@ public class NearestDealershipInteractor implements NearestDealershipInputBounda
             presenter.sendFailureMessage("No Dealerships around!");
             return;
         }
-
-        if (LoggedInUserSingleton.getInstance().getIsDealership()) {
-            presenter.sendFailureMessage("Only individual users can find closest dealerships");
-            return;
-        }
         NearestDealershipResponseModel output = apiGateway.getClosestDealership(dealerships, requestModel.getUserLocation());
         presenter.displayNearestDealership(output);
     }
 
     private boolean isValidLocation(String code) {
-        Pattern zipCode = Pattern.compile("^M[\\d][A-Z][\\d][A-Z][\\d]$");
+        Pattern zipCode = Pattern.compile("^M\\d[A-Z]\\d[A-Z]\\d$");
         Matcher matcher = zipCode.matcher(code);
         return matcher.find();
     }

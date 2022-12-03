@@ -1,9 +1,7 @@
 package screens;
 
-import intefaceAdapters.nearestDealership.DealershipRepo;
-import intefaceAdapters.nearestDealership.NearestDealershipController;
-import intefaceAdapters.nearestDealership.NearestDealershipResponseFormatter;
-import intefaceAdapters.nearestDealership.NearestDealershipScreenInterface;
+import intefaceAdapters.nearestDealership.*;
+import useCases.nearestDealership.NearestDealershipApiGateway;
 import useCases.nearestDealership.NearestDealershipDsGateway;
 import useCases.nearestDealership.NearestDealershipPresenter;
 
@@ -16,10 +14,10 @@ import java.io.IOException;
 public class NearestDealershipScreen extends JPanel implements NearestDealershipScreenInterface, ActionListener {
     private final JTextField location = new JTextField(6);
     private final NearestDealershipController controller;
-    private final ListingCRUDScreen parent;
+    private final ListingCRUDScreen parentFrame;
 
     public NearestDealershipScreen(ListingCRUDScreen parent) {
-        this.parent = parent;
+        this.parentFrame = parent;
         JLabel title = new JLabel("Login");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         NearestDealershipDsGateway gateway;
@@ -29,7 +27,8 @@ public class NearestDealershipScreen extends JPanel implements NearestDealership
             throw new RuntimeException("Could not find file.");
         }
         NearestDealershipPresenter presenter = new NearestDealershipResponseFormatter(this);
-        controller = new NearestDealershipController(presenter, gateway);
+        NearestDealershipApiGateway apiGateway = new NearestDealershipApi();
+        controller = new NearestDealershipController(presenter, gateway, apiGateway);
 
         LabelTextPanel locationInfo = new LabelTextPanel(new JLabel("Your Postal Code"), location);
         JButton find = new JButton("Find");
@@ -59,8 +58,7 @@ public class NearestDealershipScreen extends JPanel implements NearestDealership
             controller.findNearestDealership(location.getText());
         }
         if (e.getActionCommand().equals("Back")) {
-            System.out.println("Over here");
-            parent.comeBackScreen();
+            parentFrame.comeBackScreen();
         }
     }
 }

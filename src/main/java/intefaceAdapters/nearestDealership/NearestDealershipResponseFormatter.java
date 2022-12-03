@@ -10,6 +10,9 @@ public class NearestDealershipResponseFormatter implements NearestDealershipPres
         this.view = view;
     }
 
+    /**
+     * @param response contains details about the nearest dealership
+     */
     @Override
     public void displayNearestDealership(NearestDealershipResponseModel response) {
         String res = String.format("The nearest dealership is %s located at %s. " +
@@ -18,6 +21,9 @@ public class NearestDealershipResponseFormatter implements NearestDealershipPres
         view.showDealership(res);
     }
 
+    /**
+     * @param failure this is message with the reason why a nearest dealership was not returned
+     */
     @Override
     public void sendFailureMessage(String failure) {
         view.showFailure(failure);

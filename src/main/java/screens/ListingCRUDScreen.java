@@ -25,7 +25,7 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
         buttons.add(createListing);
         buttons.add(browseListings);
         buttons.add(removeListings);
-        if (!LoggedInUserSingleton.getInstance().getIsDealership()) {
+        if (true) {
             buttons.add(findNearestDealership);
         }
         buttons.add(logOut);

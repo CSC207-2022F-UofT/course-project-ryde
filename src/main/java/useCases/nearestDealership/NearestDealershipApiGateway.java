@@ -1,10 +1,15 @@
 package useCases.nearestDealership;
 
-import useCases.nearestDealership.DealershipDsRequestModel;
-import useCases.nearestDealership.NearestDealershipResponseModel;
-
 import java.util.List;
 
+/**
+ * Interface for the distance API
+ */
 public interface NearestDealershipApiGateway {
-    NearestDealershipResponseModel getClosestDealership(List<DealershipDsRequestModel> dealerships, String user_location);
+    /**
+     * @param dealerships list of dealerships in the database
+     * @param userLocation postal code that the user has input
+     * @return a response model that holds data about the dealership that is closest to the user
+     */
+    NearestDealershipResponseModel getClosestDealership(List<DealershipDsRequestModel> dealerships, String userLocation);
 }
