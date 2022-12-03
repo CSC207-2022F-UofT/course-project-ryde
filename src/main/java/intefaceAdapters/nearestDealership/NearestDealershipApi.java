@@ -1,10 +1,12 @@
-package useCases.nearestDealership;
+package intefaceAdapters.nearestDealership;
 
-import intefaceAdapters.nearestDealership.NearestDealershipApiGateway;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import useCases.nearestDealership.DealershipDsRequestModel;
+import useCases.nearestDealership.NearestDealershipApiGateway;
+import useCases.nearestDealership.NearestDealershipResponseModel;
 
 import java.io.IOException;
 import java.net.URI;

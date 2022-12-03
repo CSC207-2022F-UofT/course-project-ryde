@@ -1,7 +1,7 @@
 package useCases.nearestDealership;
 
 import entities.LoggedInUserSingleton;
-import intefaceAdapters.nearestDealership.NearestDealershipApiGateway;
+import intefaceAdapters.nearestDealership.NearestDealershipApi;
 
 import java.util.List;
 import java.util.regex.Matcher;

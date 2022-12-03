@@ -1,4 +1,4 @@
-package intefaceAdapters.nearestDealership;
+package useCases.nearestDealership;
 
 import useCases.nearestDealership.DealershipDsRequestModel;
 import useCases.nearestDealership.NearestDealershipResponseModel;

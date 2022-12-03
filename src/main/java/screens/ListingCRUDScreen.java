@@ -1,5 +1,6 @@
 package screens;
 
+import entities.LoggedInUserSingleton;
 import useCases.nearestDealership.NearestDealershipRequestModel;
 
 import javax.swing.*;
@@ -24,7 +25,9 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
         buttons.add(createListing);
         buttons.add(browseListings);
         buttons.add(removeListings);
-        buttons.add(findNearestDealership);
+        if (!LoggedInUserSingleton.getInstance().getIsDealership()) {
+            buttons.add(findNearestDealership);
+        }
         buttons.add(logOut);
         this.add(buttons);
 
@@ -95,7 +98,6 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
     }
 
     public void comeBackScreen() {
-        System.out.println("Over there");
         this.setContentPane(main);
         this.pack();
     }
