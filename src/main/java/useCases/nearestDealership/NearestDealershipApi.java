@@ -45,7 +45,7 @@ public class NearestDealershipApi implements NearestDealershipApiGateway {
     }
 
     private JSONObject getData(String source, String destination) throws IOException, InterruptedException, ParseException {
-        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + source + "&destinations=" + destination + "&units=imperial&key=" + API_KEY;
+        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + source + "&destinations=" + destination + "&key=" + API_KEY;
         HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
         HttpClient client = HttpClient.newBuilder().build();
         var response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();

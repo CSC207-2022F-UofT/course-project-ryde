@@ -3,6 +3,8 @@ package useCases.nearestDealership;
 import intefaceAdapters.nearestDealership.NearestDealershipApiGateway;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NearestDealershipInteractor implements NearestDealershipInputBoundary {
     private final NearestDealershipPresenter presenter;
@@ -32,15 +34,8 @@ public class NearestDealershipInteractor implements NearestDealershipInputBounda
     }
 
     private boolean isValidLocation(String code) {
-        if (code.length() != 6) {
-            return false;
-        }
-        boolean first = code.startsWith("M");
-        boolean second = Character.isDigit(code.charAt(1));
-        boolean third = Character.isUpperCase(code.charAt(2));
-        boolean fourth = Character.isDigit(code.charAt(3));
-        boolean fifth = Character.isUpperCase(code.charAt(4));
-        boolean sixth = Character.isDigit(code.charAt(5));
-        return first && second && third && fourth && fifth && sixth;
+        Pattern zipCode = Pattern.compile("^M[\\d][A-Z][\\d][A-Z][\\d]$");
+        Matcher matcher = zipCode.matcher(code);
+        return matcher.find();
     }
 }
