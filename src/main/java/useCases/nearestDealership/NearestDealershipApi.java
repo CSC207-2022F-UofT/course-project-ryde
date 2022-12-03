@@ -1,6 +1,5 @@
 package useCases.nearestDealership;
 
-import intefaceAdapters.nearestDealership.ApiKey;
 import intefaceAdapters.nearestDealership.NearestDealershipApiGateway;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,7 +14,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 public class NearestDealershipApi implements NearestDealershipApiGateway {
-    private static final String API_KEY = ApiKey.API_KEY;
+    private static final String API_KEY = "";
     @Override
     public NearestDealershipResponseModel getClosestDealership(List<DealershipDsRequestModel> dealerships, String userLocation) {
         DealershipDsRequestModel closest = dealerships.get(0);
