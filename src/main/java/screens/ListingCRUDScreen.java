@@ -1,5 +1,7 @@
 package screens;
 
+import useCases.nearestDealership.NearestDealershipRequestModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,17 +18,20 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
         JButton createListing = new JButton("Create Listing");
         JButton browseListings = new JButton("Browse Listings");
         JButton removeListings = new JButton("Remove Listings");
+        JButton findNearestDealership = new JButton("Find Nearest Dealership");
         JButton logOut = new JButton("Log Out :(");
 
         buttons.add(createListing);
         buttons.add(browseListings);
         buttons.add(removeListings);
+        buttons.add(findNearestDealership);
         buttons.add(logOut);
         this.add(buttons);
 
         createListing.addActionListener(this);
         browseListings.addActionListener(this);
         removeListings.addActionListener(this);
+        findNearestDealership.addActionListener(this);
         logOut.addActionListener(this);
 
         main = new JPanel();
@@ -63,6 +68,9 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
                     "You have been logged out. Thank you for using Ryde!");
             this.dispose();
         }
+        if (e.getActionCommand().equals("Find Nearest Dealership")) {
+            this.setNearestDealershipScreen();
+        }
     }
 
     private void setCreateScreen() {
@@ -87,7 +95,14 @@ public class ListingCRUDScreen extends JFrame implements ActionListener {
     }
 
     public void comeBackScreen() {
+        System.out.println("Over there");
         this.setContentPane(main);
+        this.pack();
+    }
+
+    private void setNearestDealershipScreen() {
+        NearestDealershipScreen nearestDealershipScreen = new NearestDealershipScreen(this);
+        this.setContentPane(nearestDealershipScreen);
         this.pack();
     }
 }
