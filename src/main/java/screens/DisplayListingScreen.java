@@ -1,12 +1,9 @@
 package screens;
 
-import intefaceAdapters.displayListing.DisplayListingController;
-import intefaceAdapters.displayListing.DisplayListingRepo;
-import intefaceAdapters.displayListing.DisplayListingResponseFormatter;
-import intefaceAdapters.displayListing.DisplayListingScreenInterface;
-import useCases.displayListing.DisplayListingDsGateway;
-import useCases.displayListing.DisplayListingDsRequestModel;
-import useCases.displayListing.DisplayListingPresenter;
+import interface_adapters.display_listing.*;
+import use_cases.display_listing.DisplayListingDsGateway;
+import use_cases.display_listing.DisplayListingDsRequestModel;
+import use_cases.display_listing.DisplayListingPresenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +40,7 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
         try {
             gateway = new DisplayListingRepo("./listings.csv");
         } catch (IOException e){
-            throw new RuntimeException("Could not find file");
+            throw new ListingDisplayFailed("Could not find file");
         }
         displayListingController = new DisplayListingController(displayListingPresenter, gateway);
     }
@@ -105,7 +102,6 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
     @Override
     public void displayListing(List<DisplayListingDsRequestModel> filteredListings) {
         JDialog dialog = new ListingsPopUp(filteredListings);
-        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setVisible(true);
     }
 
@@ -115,13 +111,13 @@ public class DisplayListingScreen extends JPanel implements ActionListener, Disp
     }
 
     private JButton createBackButton() {
-        final JButton back;
-        back = new JButton("Exit");
-        back.addActionListener(this);
+        final JButton goBack;
+        goBack = new JButton("Exit");
+        goBack.addActionListener(this);
         JPanel backButton = new JPanel();
-        backButton.add(back);
+        backButton.add(goBack);
         this.add(backButton);
-        return back;
+        return goBack;
     }
 
     public JButton exitDisplayButton() {

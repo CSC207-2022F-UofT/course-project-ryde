@@ -52,27 +52,20 @@ class UserTest {
     void getName() {
         User user = new IndividualUser("manav@gmail.com", "password", "manav");
 
-        assertEquals(user.getName(), "manav");
+        assertEquals("manav", user.getName());
     }
 
     @Test
     void getEmail() {
         User user = new IndividualUser("manav@gmail.com", "password", "manav");
 
-        assertEquals(user.getEmail(), "manav@gmail.com");
+        assertEquals("manav@gmail.com", user.getEmail());
     }
 
     @Test
     void getPassword() {
         User user = new IndividualUser("manav@gmail.com", "password", "manav");
 
-        assertEquals(user.getPassword(), "password");
-    }
-
-    /**
-     * To be added soon
-     */
-    @Test
-    void getListings() {
+        assertEquals("password", user.getPassword());
     }
 }

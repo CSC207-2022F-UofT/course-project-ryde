@@ -1,11 +1,10 @@
 package screens;
 
-import intefaceAdapters.userLogin.UserLoginResponseFormatter;
-import intefaceAdapters.userLogin.UserLoginScreenInterface;
-import intefaceAdapters.userLogin.UserLoginController;
-import useCases.userLogin.UserLoginDsGateway;
-import useCases.userLogin.UserLoginPresenter;
-import useCases.userRegister.UserRegisterDsGateway;
+import interface_adapters.user_login.UserLoginResponseFormatter;
+import interface_adapters.user_login.UserLoginScreenInterface;
+import interface_adapters.user_login.UserLoginController;
+import use_cases.user_login.UserLoginDsGateway;
+import use_cases.user_login.UserLoginPresenter;
 
 import javax.swing.*;
 import java.awt.*;

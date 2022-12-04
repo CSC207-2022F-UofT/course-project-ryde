@@ -1,9 +1,9 @@
 package screens;
 
-import intefaceAdapters.nearestDealership.*;
-import useCases.nearestDealership.NearestDealershipApiGateway;
-import useCases.nearestDealership.NearestDealershipDsGateway;
-import useCases.nearestDealership.NearestDealershipPresenter;
+import interface_adapters.nearest_dealership.*;
+import use_cases.nearest_dealership.NearestDealershipApiGateway;
+import use_cases.nearest_dealership.NearestDealershipDsGateway;
+import use_cases.nearest_dealership.NearestDealershipPresenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +24,7 @@ public class NearestDealershipScreen extends JPanel implements NearestDealership
         try {
             gateway = new DealershipRepo("./users.csv");
         } catch (IOException e) {
-            throw new RuntimeException("Could not find file.");
+            throw new FindDealershipFailed("Could not find file.");
         }
         NearestDealershipPresenter presenter = new NearestDealershipResponseFormatter(this);
         NearestDealershipApiGateway apiGateway = new NearestDealershipApi();
