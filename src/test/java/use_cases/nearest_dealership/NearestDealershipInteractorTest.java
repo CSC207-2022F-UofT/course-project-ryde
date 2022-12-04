@@ -5,7 +5,6 @@ import interface_adapters.nearest_dealership.DealershipRepo;
 import interface_adapters.nearest_dealership.NearestDealershipController;
 import interface_adapters.nearest_dealership.NearestDealershipResponseFormatter;
 import interface_adapters.nearest_dealership.NearestDealershipScreenInterface;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -54,10 +53,6 @@ class NearestDealershipInteractorTest {
             }
         };
         controller = new NearestDealershipController(presenter, gateway, mockApiGateway);
-    }
-
-    @AfterEach
-    void tearDown() {
     }
 
     /**

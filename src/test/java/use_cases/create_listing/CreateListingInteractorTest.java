@@ -6,7 +6,6 @@ import interface_adapters.create_listing.CreateListingController;
 import interface_adapters.create_listing.CreateListingResponseFormatter;
 import interface_adapters.create_listing.CreateListingScreenInterface;
 import interface_adapters.create_listing.MockListingRepo;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,10 +40,6 @@ class CreateListingInteractorTest {
         presenter = new CreateListingResponseFormatter(view);
         factory = new ListingFactory();
         controller = new CreateListingController(presenter, factory, gateway);
-    }
-
-    @AfterEach
-    void tearDown() {
     }
 
     /**
@@ -166,5 +161,24 @@ class CreateListingInteractorTest {
         assertFalse(gateway.exists(model));
     }
 
+    @Test
+    void testTooManyUserListings() {
+        String brand = "Ford";
+        String model = "F150";
+        String color = "Blue";
+        String year = "2019";
+        int numSeats = 4;
+        String price = "50000";
+        String number = "1234567890";
+        String description = "This car is very cool. Buy it. You will love it.";
+        String type = "Used";
 
+        controller.executeInteractor(brand, model, color, year, numSeats, price, number, description, type);
+        controller.executeInteractor("Honda", model, color, year, numSeats, price, number, description, type);
+        controller.executeInteractor("Ferrari", model, color, year, numSeats, price, number, description, type);
+        controller.executeInteractor("Tesla", model, color, year, numSeats, price, number, description, type);
+        controller.executeInteractor("Mitsubishi", model, color, year, numSeats, price, number, description, type);
+        controller.executeInteractor("Hyundai", "Something", color, year, numSeats, price, number, description, type);
+        assertEquals("Looks like you already have the max number of listings allowed!", status);
+    }
 }

@@ -1,5 +1,6 @@
 package use_cases.create_listing;
 
+import entities.IndividualUser;
 import entities.Listing;
 import entities.ListingFactory;
 import entities.LoggedInUserSingleton;
@@ -55,6 +56,9 @@ public class CreateListingInteractor implements CreateListingInputBoundary{
             presenter.prepareFailView("Please enter a valid price");
         } else if (!isNumericLong(phoneNumber) || phoneNumber.length() != 10) {
             presenter.prepareFailView("Please enter a valid number");
+        } else if (!LoggedInUserSingleton.getInstance().getIsDealership() &&
+                gateway.getNumUserListings() == IndividualUser.MAX_LISTINGS) {
+            presenter.prepareFailView("Looks like you already have the max number of listings allowed!");
         } else {
             yearNum = Integer.parseInt(year);
             priceNum = Float.parseFloat(price);

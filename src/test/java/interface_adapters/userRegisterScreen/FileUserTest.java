@@ -1,7 +1,6 @@
 package interface_adapters.userRegisterScreen;
 
 import interface_adapters.user_register.FileUser;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import use_cases.user_register.UserRegisterDsGateway;
@@ -28,11 +27,6 @@ class FileUserTest {
             throw new RuntimeException("Could not create file.");
         }
     }
-
-    @AfterEach
-    void tearDown(){
-    }
-
     /**
      * tests that save correctly saves a new user in the database. For testing we use the test_users.csv.
      */

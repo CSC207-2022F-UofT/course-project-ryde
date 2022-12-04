@@ -18,7 +18,7 @@ class UserLoginInteractorTest {
     private final String SUCCESS_TEST_EMAIL = "manav@gmail.com";
     private final String SUCCESS_TEST_PASSWORD = "password";
 
-    class MockUserLoginScreen implements UserLoginScreenInterface {
+    static class MockUserLoginScreen implements UserLoginScreenInterface {
         String message;
 
         public String getMessage() {
@@ -33,7 +33,7 @@ class UserLoginInteractorTest {
         public void showFailureLoginMessage(String errorMessage) {
             message = errorMessage;
         }    }
-    private final MockUserLoginScreen mockUserLoginScreen =  new MockUserLoginScreen();
+    private final MockUserLoginScreen mockUserLoginScreen = new MockUserLoginScreen();
     private UserLoginController userLoginController;
 
     @BeforeEach
@@ -70,7 +70,7 @@ class UserLoginInteractorTest {
         userLoginController.callUserLoginInteractor(SUCCESS_TEST_EMAIL, SUCCESS_TEST_PASSWORD);
         boolean isDealership  = LoggedInUserSingleton.getInstance().getIsDealership();
         String loggedInUserEmail = LoggedInUserSingleton.getInstance().getEmail();
-        assertEquals(false, isDealership);
+        assertFalse(isDealership);
         assertEquals(SUCCESS_TEST_EMAIL, loggedInUserEmail);
     }
 
@@ -100,7 +100,8 @@ class UserLoginInteractorTest {
         });
         
         try {
-            LoggedInUserSingleton.getInstance();
+            LoggedInUserSingleton user = LoggedInUserSingleton.getInstance();
+            assertEquals("fail@gmail.com", user.getEmail());
         } catch (AssertionError e) {
             String actualAssertionError = e.getMessage();
             assertEquals(expectedAssertionError.getMessage(), actualAssertionError);

@@ -1,5 +1,6 @@
 package interface_adapters.create_listing;
 
+import entities.LoggedInUserSingleton;
 import use_cases.create_listing.CreateListingDsGateway;
 import use_cases.create_listing.CreateListingDsRequestModel;
 
@@ -17,6 +18,12 @@ public class ListingRepo implements CreateListingDsGateway {
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
     private final Map<String, CreateListingDsRequestModel> listingsMap = new HashMap<>();
+    private int numUserListings = 0;
+
+    @Override
+    public int getNumUserListings() {
+        return numUserListings;
+    }
 
     public Map<String, CreateListingDsRequestModel> getListingsMap() {
         return listingsMap;
@@ -55,6 +62,9 @@ public class ListingRepo implements CreateListingDsGateway {
                 String price = String.valueOf(col[headers.get("price")]);
                 String phoneNumber = String.valueOf(col[headers.get("phoneNumber")]);
                 String userEmail = String.valueOf(col[headers.get("userEmail")]);
+                if (userEmail.equals(LoggedInUserSingleton.getInstance().getEmail())) {
+                    numUserListings++;
+                }
                 String description = String.valueOf(col[headers.get("description")]);
                 String type = String.valueOf(col[headers.get("type")]);
                 String creationTime = String.valueOf(col[headers.get("creationTime")]);
@@ -74,6 +84,7 @@ public class ListingRepo implements CreateListingDsGateway {
     @Override
     public void save(CreateListingDsRequestModel createListingDsRequestModel) {
         listingsMap.put(createListingDsRequestModel.getUniqueId(), createListingDsRequestModel);
+        numUserListings++;
         this.save();
     }
 

@@ -1,5 +1,6 @@
 package interface_adapters.create_listing;
 
+import entities.LoggedInUserSingleton;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,7 @@ class ListingRepoTest {
 
     @BeforeEach
     void setUp() throws IOException {
+        LoggedInUserSingleton.init("manav@gmail.com", false);
         resetCsv();
         try {
             gateway = new ListingRepo("./test_listing_creation.csv");

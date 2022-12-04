@@ -2,7 +2,6 @@ package use_cases.display_listing;
 
 import entities.LoggedInUserSingleton;
 import interface_adapters.display_listing.*;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,10 +43,6 @@ class DisplayListingInteractorTest {
         }
         presenter = new DisplayListingResponseFormatter(view);
         controller = new DisplayListingController(presenter, gateway);
-    }
-
-    @AfterEach
-    void tearDown() {
     }
 
     /**

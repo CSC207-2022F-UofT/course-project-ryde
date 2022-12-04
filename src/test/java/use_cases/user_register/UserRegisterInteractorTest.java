@@ -39,7 +39,8 @@ class UserRegisterInteractorTest {
      */
     @Test
     void createIndividualUser() {
-        UserRegisterResponseModel response = controller.create("manav@gmail.com", "password", "password", "manav");
+        UserRegisterResponseModel response = controller.create("manav@gmail.com",
+                "password", "password", "manav");
         assertEquals("manav", response.getLogin());
         assertNotNull(response.getCreationTime()); // any creation time is fine.
         assertTrue(userRepository.existsByEmail("manav@gmail.com"));
@@ -50,7 +51,8 @@ class UserRegisterInteractorTest {
      */
     @Test
     void createDealershipUser() {
-        UserRegisterResponseModel response = controller.create("manav@gmail.com", "password", "password", "manav", "M5S1J4");
+        UserRegisterResponseModel response = controller.create("manav@gmail.com", "password",
+                "password", "manav", "M5S1J4");
         assertEquals("manav", response.getLogin());
         assertNotNull(response.getCreationTime()); // any creation time is fine.
         assertTrue(userRepository.existsByEmail("manav@gmail.com"));
@@ -61,10 +63,9 @@ class UserRegisterInteractorTest {
      */
     @Test
     void testUserAlreadyExists() {
-        controller.create("manav@gmail.com", "password", "password", "manav", "M5S1J4");
-        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> {
-            controller.create("manav@gmail.com", "password", "password", "manav", "M5S1J4");
-        });
+        controller.create("manav@gmail.com", "password", "password",
+                "manav", "M5S1J4");
+        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> controller.create("manav@gmail.com", "password", "password", "manav", "M5S1J4"));
         assertEquals("User already exists.", exception.getMessage());
     }
 
@@ -73,9 +74,7 @@ class UserRegisterInteractorTest {
      */
     @Test
     void testDifferentPasswords() {
-        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> {
-            controller.create("manav@gmail.com", "password", "notpassword", "manav", "M5S1J4");
-        });
+        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> controller.create("manav@gmail.com", "password", "notpassword", "manav", "M5S1J4"));
         assertEquals("Passwords don't match.", exception.getMessage());
     }
 
@@ -84,9 +83,7 @@ class UserRegisterInteractorTest {
      */
     @Test
     void testInvalidLocation() {
-        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> {
-            controller.create("manav@gmail.com", "password", "password", "manav", "K5S1J4");
-        });
+        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> controller.create("manav@gmail.com", "password", "password", "manav", "K5S1J4"));
         assertEquals("Please enter a valid location in Toronto", exception.getMessage());
     }
 
@@ -95,9 +92,7 @@ class UserRegisterInteractorTest {
      */
     @Test
     void testValidPassword() {
-        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> {
-            controller.create("manav@gmail.com", "pass", "pass", "manav", "M5S1J4");
-        });
+        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> controller.create("manav@gmail.com", "pass", "pass", "manav", "M5S1J4"));
         assertEquals("User password must have more than 7 characters.", exception.getMessage());
     }
 
@@ -106,9 +101,7 @@ class UserRegisterInteractorTest {
      */
     @Test
     void testValidEmail() {
-        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> {
-            controller.create("manavgmailcom", "password", "password", "manav", "M5S1J4");
-        });
+        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> controller.create("manavgmailcom", "password", "password", "manav", "M5S1J4"));
         assertEquals("Please enter a valid email address", exception.getMessage());
     }
 
@@ -117,9 +110,7 @@ class UserRegisterInteractorTest {
      */
     @Test
     void testEmptyForm() {
-        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> {
-            controller.create("", "", "", "");
-        });
+        UserCreationFailed exception = assertThrows(UserCreationFailed.class, () -> controller.create("", "", "", ""));
         assertEquals("Please fill out the the form fully", exception.getMessage());
     }
 }

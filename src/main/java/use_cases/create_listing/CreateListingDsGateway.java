@@ -7,4 +7,5 @@ public interface CreateListingDsGateway {
      * saves the listing to the database
      */
     void save (CreateListingDsRequestModel createListingDsRequestModel);
+    int getNumUserListings();
 }

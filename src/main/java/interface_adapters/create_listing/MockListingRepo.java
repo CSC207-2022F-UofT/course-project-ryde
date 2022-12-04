@@ -11,9 +11,16 @@ import java.util.Map;
  */
 public class MockListingRepo implements CreateListingDsGateway {
     private final Map<String, CreateListingDsRequestModel> listingsMap = new HashMap<>();
+    private int numUserListings;
     @Override
     public void save(CreateListingDsRequestModel createListingDsRequestModel) {
         listingsMap.put(createListingDsRequestModel.getName(), createListingDsRequestModel);
+        numUserListings++;
+    }
+
+    @Override
+    public int getNumUserListings() {
+        return numUserListings;
     }
 
     public boolean exists(String name) {

@@ -2,7 +2,6 @@ package use_cases.delete_listing;
 
 import entities.LoggedInUserSingleton;
 import interface_adapters.delete_listing.*;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import use_cases.create_listing.CreateListingDsRequestModel;
@@ -53,11 +52,6 @@ class DeleteListingInteractorTest {
         }
         presenter = new DeleteListingResponseFormatter(view);
         controller = new DeleteListingController(presenter, gateway);
-
-    }
-
-    @AfterEach
-    void tearDown() {
 
     }
 
