@@ -68,9 +68,12 @@ class UserLoginInteractorTest {
     @Test
     void checkUserLoggedIn() {
         userLoginController.callUserLoginInteractor(SUCCESS_TEST_EMAIL, SUCCESS_TEST_PASSWORD);
+        boolean isDealership  = LoggedInUserSingleton.getInstance().getIsDealership();
         String loggedInUserEmail = LoggedInUserSingleton.getInstance().getEmail();
+        assertEquals(false, isDealership);
         assertEquals(SUCCESS_TEST_EMAIL, loggedInUserEmail);
     }
+
     /**
      * Tests that we send the fail message to the user after an unsuccessful login.
      */

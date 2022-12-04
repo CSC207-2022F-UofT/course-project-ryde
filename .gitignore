@@ -122,3 +122,4 @@ replay_pid*
 /users.csv
 /listings.csv
 /test_listing_creation.csv
+/src/main/java/intefaceAdapters/nearestDealership/ApiKey.java

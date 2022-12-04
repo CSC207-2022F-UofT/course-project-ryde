@@ -6,8 +6,10 @@ package entities;
 public class LoggedInUserSingleton {
     private static LoggedInUserSingleton loggedInUser;
     private final String email;
-    private LoggedInUserSingleton(String email) {
+    private final boolean isDealership;
+    private LoggedInUserSingleton(String email, Boolean isDealership) {
         this.email = email;
+        this.isDealership = isDealership;
     }
 
     /**
@@ -25,11 +27,11 @@ public class LoggedInUserSingleton {
      * initialize the loggedInUser instance variable by calling the private constructor.
      * @param email the email of the user.
      */
-    public static void init (String email) {
+    public static void init (String email, boolean isDealership) {
        if (loggedInUser != null)  {
            return;
        }
-       loggedInUser = new LoggedInUserSingleton(email);
+       loggedInUser = new LoggedInUserSingleton(email, isDealership);
     }
 
     /**
@@ -37,7 +39,7 @@ public class LoggedInUserSingleton {
      */
 
     public static void reset() {
-        new LoggedInUserSingleton("");
+        new LoggedInUserSingleton("", false);
         loggedInUser = null;
     }
 
@@ -48,4 +50,6 @@ public class LoggedInUserSingleton {
     public String getEmail() {
        return email;
     }
+
+    public boolean getIsDealership() { return isDealership; }
 }

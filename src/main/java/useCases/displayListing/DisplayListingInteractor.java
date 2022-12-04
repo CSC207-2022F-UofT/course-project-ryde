@@ -39,7 +39,7 @@ public class DisplayListingInteractor implements DisplayListingInputBoundary{
 
     }
 
-    private static List<DisplayListingDsRequestModel> getFilteredListings(DisplayListingRequestModel displayListingRequestModel, List<DisplayListingDsRequestModel> listings) {
+    private List<DisplayListingDsRequestModel> getFilteredListings(DisplayListingRequestModel displayListingRequestModel, List<DisplayListingDsRequestModel> listings) {
         String brand = displayListingRequestModel.getBrand();
         String name = displayListingRequestModel.getName();
         String color  = displayListingRequestModel.getColor();

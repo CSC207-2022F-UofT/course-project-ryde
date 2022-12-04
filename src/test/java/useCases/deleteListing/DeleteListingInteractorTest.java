@@ -42,7 +42,7 @@ class DeleteListingInteractorTest {
 
     @BeforeEach
     void setUp() {
-        LoggedInUserSingleton.init("manav@gmail.com");
+        LoggedInUserSingleton.init("manav@gmail.com", false);
 //        setting up the csv file.
         createCsv();
 
