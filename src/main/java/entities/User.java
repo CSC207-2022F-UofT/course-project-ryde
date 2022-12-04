@@ -12,9 +12,6 @@ public abstract class User {
     private final String password;
     private final String name;
 
-//    Store ids of listings created by user
-    private final List<Integer> listings = new ArrayList<>();
-
     protected User(String email, String password, String name) {
         this.email = email;
         this.password = password;
@@ -30,10 +27,6 @@ public abstract class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public List<Integer> getListings() {
-        return listings;
     }
 
     public boolean isValidPassword() {

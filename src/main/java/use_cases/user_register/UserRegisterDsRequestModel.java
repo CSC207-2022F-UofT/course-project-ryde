@@ -12,16 +12,14 @@ public class UserRegisterDsRequestModel {
     private final String email;
     private final String password;
     private final LocalDateTime creationTime;
-    private final String listings;
 
     private final String location;
 
-    public UserRegisterDsRequestModel(String email, String name, String password, LocalDateTime creationTime, String listings, String location) {
+    public UserRegisterDsRequestModel(String email, String name, String password, LocalDateTime creationTime, String location) {
         this.email = email;
         this.name = name;
         this.password = password;
         this.creationTime = creationTime;
-        this.listings = listings;
         this.location = location;
     }
 
@@ -43,9 +41,5 @@ public class UserRegisterDsRequestModel {
 
     public String getLocation() {
         return location;
-    }
-
-    public String getListings() {
-        return listings;
     }
 }

@@ -20,7 +20,7 @@ public class NearestDealershipInteractor implements NearestDealershipInputBounda
      * @param requestModel holds the user's location
      */
     @Override
-    public void getNearestDealership(NearestDealershipRequestModel requestModel) throws InterruptedException {
+    public void getNearestDealership(NearestDealershipRequestModel requestModel){
         if (!DealershipUser.isValidLocation(requestModel.getUserLocation())){
             presenter.sendFailureMessage("Please enter a valid toronto postal code!");
             return;

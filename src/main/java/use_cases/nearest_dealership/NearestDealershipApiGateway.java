@@ -11,5 +11,5 @@ public interface NearestDealershipApiGateway {
      * @param userLocation postal code that the user has input
      * @return a response model that holds data about the dealership that is closest to the user
      */
-    NearestDealershipResponseModel getClosestDealership(List<DealershipDsRequestModel> dealerships, String userLocation) throws InterruptedException;
+    NearestDealershipResponseModel getClosestDealership(List<DealershipDsRequestModel> dealerships, String userLocation);
 }

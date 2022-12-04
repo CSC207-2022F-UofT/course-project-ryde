@@ -40,7 +40,7 @@ class FileUserTest {
     void save() throws IOException {
         UserRegisterDsRequestModel requestModel = new UserRegisterDsRequestModel(
                 "ryan@gmail.com", "ryan", "password",
-                LocalDateTime.now(), "", "M5S1J4");
+                LocalDateTime.now(), "M5S1J4");
         user.save(requestModel);
         assertTrue(user.existsByEmail("ryan@gmail.com"));
 

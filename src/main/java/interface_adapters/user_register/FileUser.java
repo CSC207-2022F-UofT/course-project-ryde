@@ -49,10 +49,9 @@ public class FileUser implements UserRegisterDsGateway {
                 String password = String.valueOf(col[headers.get("password")]);
                 String name = String.valueOf(col[headers.get("name")]);
                 String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
-                String listings = String.valueOf(col[headers.get("listings")]);
                 String location = String.valueOf(col[headers.get("location")]);
                 LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
-                UserRegisterDsRequestModel user = new UserRegisterDsRequestModel(email, name, password, ldt, listings, location);
+                UserRegisterDsRequestModel user = new UserRegisterDsRequestModel(email, name, password, ldt, location);
                 accounts.put(email, user);
             }
 
@@ -86,7 +85,7 @@ public class FileUser implements UserRegisterDsGateway {
                         user.getPassword(),
                         user.getName(),
                         user.getCreationTime(),
-                        user.getListings(),
+                        "",
                         user.getLocation());
                 writer.write(line);
                 writer.newLine();
