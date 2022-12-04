@@ -28,7 +28,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         String userEmail = requestModel.getEmail();
         String userPassword = requestModel.getPassword();
         if (userLoginDsGateway.validLogin(userEmail, userPassword)) {
-            UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde" + requestModel.getEmail());
+            UserLoginResponseModel userLoginResponseModel = new UserLoginResponseModel("Welcome back to Ryde " + requestModel.getEmail() + "!");
             boolean isDealership = userLoginDsGateway.isDealership(userEmail);
             LoggedInUserSingleton.init(userEmail, isDealership);
             userLoginPresenter.loginSuccess(userLoginResponseModel);

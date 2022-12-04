@@ -59,7 +59,7 @@ class UserLoginInteractorTest {
     @Test
     void testLoginSuccessMessage() {
         userLoginController.callUserLoginInteractor(SUCCESS_TEST_EMAIL, SUCCESS_TEST_PASSWORD);
-        String expectedSuccessMessage = "Welcome back to Ryde!";
+        String expectedSuccessMessage = "Welcome back to Ryde " + SUCCESS_TEST_EMAIL + "!";
         assertEquals(expectedSuccessMessage, mockUserLoginScreen.getMessage());
     }
     /**
