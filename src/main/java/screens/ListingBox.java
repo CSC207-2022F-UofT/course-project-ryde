@@ -1,6 +1,6 @@
 package screens;
 
-import useCases.displayListing.DisplayListingDsRequestModel;
+import use_cases.display_listing.DisplayListingDsRequestModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;

@@ -1,12 +1,9 @@
 package screens;
 
 import entities.ListingFactory;
-import intefaceAdapters.createListing.CreateListingController;
-import intefaceAdapters.createListing.CreateListingResponseFormatter;
-import intefaceAdapters.createListing.CreateListingScreenInterface;
-import intefaceAdapters.createListing.ListingRepo;
-import useCases.createListing.CreateListingDsGateway;
-import useCases.createListing.CreateListingPresenter;
+import interface_adapters.create_listing.*;
+import use_cases.create_listing.CreateListingDsGateway;
+import use_cases.create_listing.CreateListingPresenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,11 +25,11 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
     private final JComboBox<String> typeList = new JComboBox<>(types);
 
     private final CreateListingController controller;
-    public final JButton back;
+    public final JButton goBack;
 
     public CreateListingScreen() {
         renderCreateListingComponents();
-        back = createBackButton();
+        goBack = createBackButton();
 
         CreateListingPresenter presenter = new CreateListingResponseFormatter(this);
         ListingFactory listingFactory = new ListingFactory();
@@ -40,7 +37,7 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
         try {
             gateway = new ListingRepo("./listings.csv");
         } catch (IOException e) {
-            throw new RuntimeException("Could not find file");
+            throw new ListingCreationFailed("Could not find file");
         }
         controller = new CreateListingController(presenter, listingFactory, gateway);
     }
@@ -113,11 +110,10 @@ public class CreateListingScreen extends JPanel implements ActionListener, Creat
             controller.executeInteractor(brand.getText(), name.getText(), color.getText(), year.getText(),
                     Integer.parseInt(seats[seatList.getSelectedIndex()]), price.getText(),
                     phoneNumber.getText(), description.getText(), types[typeList.getSelectedIndex()]);
-        };
-
+        }
     }
 
     public JButton getBackButton() {
-        return back;
+        return goBack;
     }
 }

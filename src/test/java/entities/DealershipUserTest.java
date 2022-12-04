@@ -12,7 +12,7 @@ class DealershipUserTest {
     @Test
     void testInvalidLocationLength() {
         DealershipUser user = new DealershipUser("manav@gmail.com", "password", "manav", "M5S");
-        assertFalse(user.isValidLocation());
+        assertFalse(DealershipUser.isValidLocation(user.getLocation()));
     }
 
     /**
@@ -21,7 +21,7 @@ class DealershipUserTest {
     @Test
     void testNonTorontoLocationButCorrectLength() {
         DealershipUser user = new DealershipUser("manav@gmail.com", "password", "manav", "K5S1J4");
-        assertFalse(user.isValidLocation());
+        assertFalse(DealershipUser.isValidLocation(user.getLocation()));
     }
 
     /**
@@ -30,6 +30,6 @@ class DealershipUserTest {
     @Test
     void testValidTorontoLocation() {
         DealershipUser user = new DealershipUser("manav@gmail.com", "password", "manav", "M5S1J4");
-        assertTrue(user.isValidLocation());
+        assertTrue(DealershipUser.isValidLocation(user.getLocation()));
     }
 }

@@ -1,12 +1,9 @@
 package screens;
 
-import intefaceAdapters.deleteListing.DeleteListingController;
-import intefaceAdapters.deleteListing.DeleteListingRepo;
-import intefaceAdapters.deleteListing.DeleteListingResponseFormatter;
-import intefaceAdapters.deleteListing.DeleteListingScreenInterface;
-import useCases.deleteListing.DeleteListingDsGateway;
-import useCases.deleteListing.DeleteListingDsRequestModel;
-import useCases.deleteListing.DeleteListingPresenter;
+import interface_adapters.delete_listing.*;
+import use_cases.delete_listing.DeleteListingDsGateway;
+import use_cases.delete_listing.DeleteListingDsRequestModel;
+import use_cases.delete_listing.DeleteListingPresenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,11 +16,11 @@ public class DeleteListingsScreen extends JPanel implements DeleteListingScreenI
     private final DeleteListingController controller;
     private final JPanel contentPanel;
     private final JButton exit;
-    private final ListingCRUDScreen parent;
+    private final ListingCRUDScreen parentFrame;
 
 
     public DeleteListingsScreen(ListingCRUDScreen parent) {
-        this.parent = parent;
+        this.parentFrame = parent;
         JLabel title = new JLabel("My Listings");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -38,7 +35,7 @@ public class DeleteListingsScreen extends JPanel implements DeleteListingScreenI
         try{
             gateway = new DeleteListingRepo("./listings.csv");
         } catch (IOException e) {
-            throw new RuntimeException("Could not find file");
+            throw new ListingDeletionFailed("Could not find file");
         }
         DeleteListingPresenter presenter = new DeleteListingResponseFormatter(this);
         this.controller = new DeleteListingController(presenter, gateway);
@@ -71,14 +68,13 @@ public class DeleteListingsScreen extends JPanel implements DeleteListingScreenI
     @Override
     public void showDeletedMessage(String message) {
         DeletedPopUp deletedPopUp = new DeletedPopUp(message);
-        deletedPopUp.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         deletedPopUp.setVisible(true);
         deletedPopUp.getContButton().addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        parent.comeBackScreen();
+        parentFrame.comeBackScreen();
     }
 
     public JButton getBackButton() {

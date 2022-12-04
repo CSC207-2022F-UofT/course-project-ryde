@@ -1,13 +1,14 @@
 import entities.UserFactory;
-import intefaceAdapters.userRegister.FileUser;
-import intefaceAdapters.userRegister.UserRegisterController;
-import intefaceAdapters.userRegister.UserRegisterResponseFormatter;
+import interface_adapters.user_register.FileUser;
+import interface_adapters.user_register.UserCreationFailed;
+import interface_adapters.user_register.UserRegisterController;
+import interface_adapters.user_register.UserRegisterResponseFormatter;
 import screens.RegisterScreen;
 import screens.WelcomeScreen;
-import useCases.userRegister.UserRegisterDsGateway;
-import useCases.userRegister.UserRegisterInputBoundary;
-import useCases.userRegister.UserRegisterInteractor;
-import useCases.userRegister.UserRegisterPresenter;
+import use_cases.user_register.UserRegisterDsGateway;
+import use_cases.user_register.UserRegisterInputBoundary;
+import use_cases.user_register.UserRegisterInteractor;
+import use_cases.user_register.UserRegisterPresenter;
 
 import java.io.IOException;
 
@@ -23,7 +24,7 @@ public class Main {
         try {
             user = new FileUser("./users.csv");
         } catch (IOException e) {
-            throw new RuntimeException("Could not create file.");
+            throw new UserCreationFailed("Could not create file.");
         }
         UserRegisterPresenter presenter = new UserRegisterResponseFormatter();
         UserFactory userFactory = new UserFactory();

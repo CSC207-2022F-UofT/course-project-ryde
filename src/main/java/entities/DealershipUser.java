@@ -1,5 +1,8 @@
 package entities;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Represents a car dealership with a location
  */
@@ -14,17 +17,10 @@ public class DealershipUser extends User{
     /**
      * @return if location is a valid Toronto Postal Code
      */
-    public boolean isValidLocation() {
-        if (location.length() != 6) {
-            return false;
-        }
-        boolean first = location.startsWith("M");
-        boolean second = Character.isDigit(location.charAt(1));
-        boolean third = Character.isUpperCase(location.charAt(2));
-        boolean fourth = Character.isDigit(location.charAt(3));
-        boolean fifth = Character.isUpperCase(location.charAt(4));
-        boolean sixth = Character.isDigit(location.charAt(5));
-        return first && second && third && fourth && fifth && sixth;
+    public static boolean isValidLocation(String location) {
+        Pattern zipCode = Pattern.compile("^M\\d[A-Z]\\d[A-Z]\\d$");
+        Matcher matcher = zipCode.matcher(location);
+        return matcher.find();
     }
 
     /**

@@ -1,6 +1,6 @@
 package screens;
-import intefaceAdapters.userRegister.UserRegisterController;
-import useCases.userRegister.UserRegisterResponseModel;
+import interface_adapters.user_register.UserRegisterController;
+import use_cases.user_register.UserRegisterResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,16 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RegisterScreen extends JPanel implements ActionListener{
-    JTextField email = new JTextField(25);
-    JTextField name = new JTextField(25);
-    JPasswordField password = new JPasswordField(15);
-    JPasswordField repeatPassword = new JPasswordField(15);
+    private final JTextField email = new JTextField(25);
+    private final JTextField name = new JTextField(25);
+    private final JPasswordField password = new JPasswordField(15);
+    private final JPasswordField repeatPassword = new JPasswordField(15);
     String location;
-    JRadioButton rb1,rb2;
+    private final JRadioButton rb2;
 
     public final JButton back;
 
-    UserRegisterController userRegisterController;
+    private final UserRegisterController userRegisterController;
 
     public RegisterScreen(UserRegisterController controller) {
 
@@ -35,7 +35,7 @@ public class RegisterScreen extends JPanel implements ActionListener{
                 new JLabel("Choose password"), password);
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
                 new JLabel("Enter password again"), repeatPassword);
-        rb1=new JRadioButton("Individual", true);
+        JRadioButton rb1 = new JRadioButton("Individual", true);
         rb1.setBounds(100,50,100,30);
         rb2=new JRadioButton("Dealership");
         rb2.setBounds(100,100,100,30);
@@ -69,7 +69,6 @@ public class RegisterScreen extends JPanel implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
         if (evt.getActionCommand().equals("Go Back")){
             return;
         }

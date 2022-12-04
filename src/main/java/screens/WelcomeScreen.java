@@ -1,8 +1,8 @@
 package screens;
 
-import intefaceAdapters.userLogin.FindUser;
-import intefaceAdapters.userRegister.FileUser;
-import useCases.userLogin.UserLoginDsGateway;
+import interface_adapters.user_login.FindUser;
+import interface_adapters.user_login.UserSearchFailed;
+import use_cases.user_login.UserLoginDsGateway;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +63,6 @@ public class WelcomeScreen extends JFrame implements ActionListener {
             this.setContentPane(main);
             this.pack();
         }
-        System.out.println(evt.getActionCommand());
     }
 
     private void setLoginScreen() {
@@ -71,7 +70,7 @@ public class WelcomeScreen extends JFrame implements ActionListener {
         try {
             gateway = new FindUser("./users.csv");
         } catch (IOException e) {
-            throw new RuntimeException("Could not find file.");
+            throw new UserSearchFailed("Could not find file.");
         }
         UserLoginScreen loginUserScreen = new UserLoginScreen(gateway);
         this.setContentPane(loginUserScreen);

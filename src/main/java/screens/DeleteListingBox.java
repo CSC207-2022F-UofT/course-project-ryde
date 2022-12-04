@@ -1,7 +1,7 @@
 package screens;
 
-import intefaceAdapters.deleteListing.DeleteListingController;
-import useCases.deleteListing.DeleteListingDsRequestModel;
+import interface_adapters.delete_listing.DeleteListingController;
+import use_cases.delete_listing.DeleteListingDsRequestModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;

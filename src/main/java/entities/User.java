@@ -15,7 +15,7 @@ public abstract class User {
 //    Store ids of listings created by user
     private final List<Integer> listings = new ArrayList<>();
 
-    public User(String email, String password, String name) {
+    protected User(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
