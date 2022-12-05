@@ -15,6 +15,10 @@ public class NearestDealershipResponseFormatter implements NearestDealershipPres
      */
     @Override
     public void displayNearestDealership(NearestDealershipResponseModel response) {
+        if (response.getDistance().equals("none")) {
+            sendFailureMessage("Looks like there is no API key! Cannot make call to the service :(");
+            return;
+        }
         String res = String.format("The nearest dealership is %s located at %s. " +
                 "It is %s away from you and should only take you %s to get there!", response.getName(),
                 response.getLocation(), response.getDistance(), response.getDuration());

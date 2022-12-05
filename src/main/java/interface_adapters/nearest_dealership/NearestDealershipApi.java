@@ -31,6 +31,9 @@ public class NearestDealershipApi implements NearestDealershipApiGateway {
      */
     @Override
     public NearestDealershipResponseModel getClosestDealership(List<DealershipDsRequestModel> dealerships, String userLocation){
+        if (API_KEY.equals("")) {
+            return new NearestDealershipResponseModel("none", "none", "none", "none");
+        }
         DealershipDsRequestModel closest = dealerships.get(0);
         long closestDistance = 300000;
         String closestDistText = "None";
@@ -52,7 +55,7 @@ public class NearestDealershipApi implements NearestDealershipApiGateway {
                     closest = dealership;
                 }
             } catch (IOException | ParseException e) {
-                return new NearestDealershipResponseModel("none", "none", "none", "none");
+                return new NearestDealershipResponseModel("none", "none", "none", "oops");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

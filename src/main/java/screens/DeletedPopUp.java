@@ -8,7 +8,7 @@ public class DeletedPopUp extends JDialog implements ActionListener {
     private final JButton contButton;
 
     public DeletedPopUp(String message) {
-        setBounds(100, 100, 200, 100);
+        setBounds(100, 100, 300, 100);
         JLabel label = new JLabel(message);
         contButton = new JButton("Continue to Home");
         contButton.addActionListener(this);
